@@ -28,14 +28,14 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('talent.store') }}" method="POST" enctype="multipart/form-data" {{ csrf_field() }}>
+                <form action="{{ route('talent.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">名前　(*)</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <input type="text" name="tname" class="form-control" placeholder="名前を入力して下さい">
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">メールアドレス　(*)</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい">
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">パスワード　(*)</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="パスワードを入力して下さい">
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">性　(*)</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="1">
                                     <label class="form-check-label" for="inlineRadio1">男</label>
@@ -82,7 +82,7 @@
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">ロール　(*)</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="0">
                                     <label class="form-check-label" for="inlineRadio1">管理者</label>
@@ -99,7 +99,7 @@
                             <div class="col-md-3">
                                 <label for="exampleFormControlSelect1">会社入日　(*)</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <input type="date" name="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY">
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                             <div class="col-md-3">
                             <label for="exampleFormControlTextarea1">詳細の情報</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                             <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
                             </div>
                         </div>

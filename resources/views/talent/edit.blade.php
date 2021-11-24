@@ -28,14 +28,15 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form>
+                <form action="{{ route('talent.update', $talent->id) }}" method="POST">
+                    @csrf
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
                               <label for="exampleFormControlInput1">名前　(*)</label>
                             </div>
-                            <div class="col-md-9">
-                              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="名前を入力して下さい">
+                            <div class="col-md-8">
+                              <input type="text" name="tname" class="form-control" id="exampleFormControlInput1" placeholder="名前を入力して下さい" value="{{$talent->name}}">
                             </div>
                         </div>
                     </div>
@@ -44,18 +45,8 @@
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">メールアドレス　(*)</label>
                             </div>
-                            <div class="col-md-9">
-                              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label for="exampleFormControlInput1">パスワード　(*)</label>
-                            </div>
-                            <div class="col-md-9">
-                                <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="パスワードを入力して下さい">
+                            <div class="col-md-8">
+                              <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい" value="{{ $talent->email }}">
                             </div>
                         </div>
                     </div>
@@ -64,14 +55,18 @@
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">性　(*)</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 1) checked @endif>
                                     <label class="form-check-label" for="inlineRadio1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 2) checked @endif>
                                     <label class="form-check-label" for="inlineRadio2">女</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 0) checked @endif>
+                                    <label class="form-check-label" for="inlineRadio1">他の性</label>
                                 </div>
                             </div>
                         </div>
@@ -81,13 +76,13 @@
                             <div class="col-md-3">
                                 <label for="exampleFormControlInput1">ロール　(*)</label>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                    <input class="form-check-input" type="radio" name="role" @if($talent->role == 0) checked @endif>
                                     <label class="form-check-label" for="inlineRadio1">管理者</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <input class="form-check-input" type="radio" name="role" @if($talent->role == 1) checked @endif>
                                     <label class="form-check-label" for="inlineRadio2">タレント</label>
                                 </div>
                             </div>
@@ -98,8 +93,8 @@
                             <div class="col-md-3">
                                 <label for="exampleFormControlSelect1">会社入日　(*)</label>
                             </div>
-                            <div class="col-md-9">
-                                <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY">
+                            <div class="col-md-8">
+                                <input type="date" name="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY" value="{{ $talent->join_company_date }}">
                             </div>
                         </div>
                     </div>
@@ -108,8 +103,8 @@
                             <div class="col-md-3">
                             <label for="exampleFormControlTextarea1">詳細の情報</label>
                             </div>
-                            <div class="col-md-9">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+                            <div class="col-md-8">
+                            <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="7">{{$talent->information}}</textarea>
                             </div>
                         </div>
                     </div>

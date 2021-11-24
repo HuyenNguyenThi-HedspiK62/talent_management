@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-2 offset-4 text-right pr-3">
                     <div style="font-size:20px;">
-                        <i class="far fa-edit"></i>
+                        <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
                         <a onclick="deleteSchedule({{$schedule->id}})" class="pl-2"><i class="far fa-trash-alt"></i></a>
                     </div>
                 </div>

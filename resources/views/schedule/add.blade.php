@@ -28,14 +28,14 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('schedule.store') }}" method="POST" enctype="multipart/form-data" {{ csrf_field() }}>
+                <form action="{{ route('schedule.store') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                     <div class="form-group">
                       <div class="row">
                         <div class="col-md-3">
                           <label for="exampleFormControlInput1">スケジュール名</label>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <input type="text" name="schedulename" class="form-control" placeholder="スケジュール名を入力して下さい">
                         </div>
                       </div>
@@ -45,7 +45,7 @@
                         <div class="col-md-3">
                           <label for="exampleFormControlInput1">開始日</label>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <input type="date" name="date" class="form-control" id="exampleFormControlInput1">
                         </div>
                       </div>
@@ -55,7 +55,7 @@
                         <div class="col-md-3">
                           <label for="exampleFormControlInput1">場所</label>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <input type="text" name="location" class="form-control" placeholder="場所を入力して下さい">
                         </div>
                       </div>
@@ -65,7 +65,7 @@
                         <div class="col-md-3">
                           <label for="exampleFormControlSelect1">担当者</label>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <select class="form-control" name="person" id="exampleFormControlSelect2">
                             <option>担当者:</option>
                             @foreach($persons as $person)
@@ -80,7 +80,7 @@
                         <div class="col-md-3">
                           <label for="exampleFormControlTextarea1">詳細の情報</label>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                           <textarea class="form-control" name="info" id="exampleFormControlTextarea1" rows="7"></textarea>
                         </div>
                       </div>

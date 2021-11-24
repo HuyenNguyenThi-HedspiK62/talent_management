@@ -31,13 +31,13 @@ class ScheduleController extends Controller
     }
 
     public function store(Request $request){
-        $persons = DB::table('users')->get();
         $schedule = new Schedule();
         $schedule->schedule_name = $request->schedulename;
         $schedule->date = $request->date;
         $schedule->location = $request->location;
         $schedule->information = $request->info;
         $schedule->save();
+        $persons = DB::table('users')->get();
         // $task = $request->person;
         // dd($task);
         //$task = new Task();
@@ -49,7 +49,22 @@ class ScheduleController extends Controller
         return view('schedule.add', compact('persons'));
     }
 
-    public function edit(Request $request){
-        return view('schedule.edit');
+    public function editSchedule($id){
+        return view('schedule.edit')->with('schedule', Schedule::find($id));
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+        $data = request()->all();
+        $talent = User::find($id);
+        $talent->name = $data['tname'];
+        $talent->email = $data['email'];
+        $talent->gender = $request->has('gender');;
+        $talent->role = $request->has('role');;
+        $talent->join_company_date = $data['date'];
+        $talent->information = $data['description'];
+        $talent->save();
+        return view('schedule.edit')->with('schedule', Schedule::find($id));
     }
 }
