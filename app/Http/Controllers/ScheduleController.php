@@ -31,13 +31,13 @@ class ScheduleController extends Controller
     }
 
     public function store(Request $request){
-        $persons = DB::table('users')->get();
         $schedule = new Schedule();
         $schedule->schedule_name = $request->schedulename;
         $schedule->date = $request->date;
         $schedule->location = $request->location;
         $schedule->information = $request->info;
         $schedule->save();
+        $persons = DB::table('users')->get();
         // $task = $request->person;
         // dd($task);
         //$task = new Task();
