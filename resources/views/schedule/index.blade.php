@@ -136,7 +136,7 @@
                                         </td>
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
-                                            <a><i class="far fa-edit"></i></a>
+                                            <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
                                             <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>

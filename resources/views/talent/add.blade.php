@@ -19,8 +19,10 @@
         }
 
         .button {
+        display: flex;
         float: right; 
         padding-bottom: 50px;
+        padding-right: 75px;
         }
     </style>
 </head>
@@ -67,29 +69,12 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="1">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="1">
                                     <label class="form-check-label" for="inlineRadio1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="2">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="2">
                                     <label class="form-check-label" for="inlineRadio2">女</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label for="exampleFormControlInput1">ロール　(*)</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="0">
-                                    <label class="form-check-label" for="inlineRadio1">管理者</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="1">
-                                    <label class="form-check-label" for="inlineRadio2">タレント</label>
                                 </div>
                             </div>
                         </div>
@@ -115,8 +100,8 @@
                         </div>
                     </div>
                     <div class="button">
-                        <button type="submit" class="btn btn-danger" style="margin-right: 30px;">キャンセル</button>
-                        <button type="submit" class="btn btn-success">登記</button>
+                        <a href="/home" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
+                        <button type="submit" class="btn btn-success">編集</button>
                     </div>
                   </form>
             </div>

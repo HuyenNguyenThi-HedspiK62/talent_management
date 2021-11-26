@@ -51,7 +51,7 @@ class TalentController extends Controller
         $talent->email = $request->email;
         $talent->password = bcrypt($request->password);
         $talent->gender = $request->input('gender');
-        $talent->role = $request->input('role');
+        $talent->role = '1';
         $talent->join_company_date = $request->date;
         $talent->information = $request->description;
         $talent->save();
@@ -94,6 +94,7 @@ class TalentController extends Controller
 
     public function editTalent($id){
         return view('talent.edit')->with('talent', User::find($id));
+        
     }
     /**
      * Update the specified resource in storage.
@@ -109,12 +110,13 @@ class TalentController extends Controller
         $talent = User::find($id);
         $talent->name = $data['tname'];
         $talent->email = $data['email'];
-        $talent->gender = $request->has('gender');;
-        $talent->role = $request->has('role');;
+        $talent->gender = $request->has('gender');
         $talent->join_company_date = $data['date'];
         $talent->information = $data['description'];
         $talent->save();
-        return view('talent.edit')->with('talent', User::find($id));
+        $infos = explode(". ", $talent->information);
+        $results = $talent->schedule;
+        return view('talent.profile', ['talent' => $talent, 'infos' => $infos, 'results' => $results]);
     }
 
     /**
