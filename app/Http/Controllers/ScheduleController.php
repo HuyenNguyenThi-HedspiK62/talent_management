@@ -40,34 +40,41 @@ class ScheduleController extends Controller
         $schedule->location = $request->location;
         $schedule->information = $request->info;
         $schedule->save();
+        $schedule->users()->attach($request->get('person'));
+
+        if($request->get('search') != null){
+            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->get();
+        }else {
+            $schedules = Schedule::all()->load('users');
+        }
         $persons = DB::table('users')->get();
-        // $task = $request->person;
-        // dd($task);
-        //$task = new Task();
-        return view('schedule.add', compact('persons'));
+        return view('schedule.index', compact('persons','schedules'));
     }
 
     public function addSchedule(Request $request){
-        $persons = DB::table('users')->get();
+        $persons = DB::table('users')->where('role', 1)->get();
         return view('schedule.add', compact('persons'));
     }
 
     public function editSchedule($id){
-        return view('schedule.edit')->with('schedule', Schedule::find($id));
+        $s = DB::table('tasks')->select('status')->where('schedule_id', $id)->get();
+        $persons = DB::table('users')->where('role', 1)->get();
+        return view('schedule.edit', compact('persons', 's'))->with('schedule', Schedule::find($id));
     }
 
     public function update(Request $request, $id)
     {
         //
-        $data = request()->all();
-        $talent = User::find($id);
-        $talent->name = $data['tname'];
-        $talent->email = $data['email'];
-        $talent->gender = $request->has('gender');;
-        $talent->role = $request->has('role');;
-        $talent->join_company_date = $data['date'];
-        $talent->information = $data['description'];
-        $talent->save();
-        return view('schedule.edit')->with('schedule', Schedule::find($id));
+        //dd($request);
+        $schedule = Schedule::find($id);
+        $schedule->schedule_name = $request->schedulename;
+        $schedule->date = $request->date;
+        $schedule->location = $request->location;
+        $schedule->information = $request->info;
+        $schedule->save();
+        $schedule->users()->sync($request->get('person'));
+        $talentId = $request->get('person');
+        //dd($request->get('person'));
+        return redirect()->route('schedule.show', ['scheduleId' => $id, 'userId'=>$talentId]);
     }
 }

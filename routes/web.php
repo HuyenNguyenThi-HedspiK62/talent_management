@@ -35,10 +35,10 @@ Route::prefix('talent')->name('talent.')->group(function () {
 
 
 Route::get('/add-schedule', [App\Http\Controllers\ScheduleController::class, 'addSchedule'])->name('schedule.add');
-Route::post('/store-schedule', [App\Http\Controllers\ScheduleController::class, 'store'])->name('schedule.store');
-Route::get('/edit-schedule', [App\Http\Controllers\ScheduleController::class, 'editSchedule'])->name('schedule.edit');
+Route::post('/store-schedule/{option}', [App\Http\Controllers\ScheduleController::class, 'store'])->name('schedule.store');
+Route::get('/edit-schedule/{id}', [App\Http\Controllers\ScheduleController::class, 'editSchedule'])->name('schedule.edit');
 Route::post('/{id}/update-schedule', [App\Http\Controllers\ScheduleController::class, 'update'])->name('schedule.update');
 Route::post('/store-talent', [App\Http\Controllers\TalentController::class, 'store'])->name('talent.store');
 Route::get('/add-talent', [App\Http\Controllers\TalentController::class, 'addTalent'])->name('talent.add');
 Route::get('/{id}/edit-talent', [App\Http\Controllers\TalentController::class, 'editTalent'])->name('talent.edit');
-Route::post('/{id}/update-talent', [App\Http\Controllers\TalentController::class, 'update'])->name('talent.update');
+Route::post('/{id}/update-talent/{option}', [App\Http\Controllers\TalentController::class, 'update'])->name('talent.update');

@@ -21,6 +21,7 @@
         .button {
         float: right; 
         padding-bottom: 50px;
+        padding-right: 75px;
         }
     </style>
 </head>
@@ -28,7 +29,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('talent.update', $talent->id) }}" method="POST">
+                <form action="{{ route('talent.update',  ['id' => $talent->id,'option' => 'all']) }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <div class="row">
@@ -57,33 +58,16 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 1) checked @endif>
+                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 1) checked @endif id="male">
                                     <label class="form-check-label" for="inlineRadio1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 2) checked @endif>
+                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 2) checked @endif id="female">
                                     <label class="form-check-label" for="inlineRadio2">女</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 0) checked @endif>
+                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 0) checked @endif id="other">
                                     <label class="form-check-label" for="inlineRadio1">他の性</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label for="exampleFormControlInput1">ロール　(*)</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" @if($talent->role == 0) checked @endif>
-                                    <label class="form-check-label" for="inlineRadio1">管理者</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" @if($talent->role == 1) checked @endif>
-                                    <label class="form-check-label" for="inlineRadio2">タレント</label>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +93,7 @@
                         </div>
                     </div>
                     <div class="button">
-                        <button type="submit" class="btn btn-danger" style="margin-right: 30px;">キャンセル</button>
+                        <a href="/home" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
                         <button type="submit" class="btn btn-success">編集</button>
                     </div>
                   </form>
