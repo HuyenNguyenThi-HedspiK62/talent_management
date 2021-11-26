@@ -20,9 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('schedule')->name('schedule.')->group(function () {
+    Route::get('/delete/{scheduleId}', [App\Http\Controllers\ScheduleController::class, 'delete'])->name('delete');
     Route::get('/{option}', [App\Http\Controllers\ScheduleController::class, 'index'])->name('index');
     Route::get('/{scheduleId}/{userId}', [App\Http\Controllers\ScheduleController::class, 'show'])->name('show');
-    Route::get('/delete/{scheduleId}', [App\Http\Controllers\ScheduleController::class, 'delete'])->name('delete');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
