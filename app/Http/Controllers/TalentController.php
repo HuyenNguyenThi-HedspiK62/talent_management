@@ -87,7 +87,7 @@ class TalentController extends Controller
     public function delete($talentId){
         $talent = User::findOrFail($talentId);
         $talent->delete();
-        $talents = User::orderBy('created_at','desc')->simplePaginate(10);
+        $talents = User::orderBy('created_at','desc')->simplePaginate(10);  
         return view('talent.show')->with('talents', $talents);
     }
 
