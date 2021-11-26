@@ -125,7 +125,7 @@ table.table .form-control.error {
 <div class="container-lg">
     <div class="table-responsive">
     <div class="table-wrapper">
-            @if($talent->role == 0)
+            @if(auth()->user()->role == 0)
             <div style="margin-left: 800px">
                 <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
             </div>

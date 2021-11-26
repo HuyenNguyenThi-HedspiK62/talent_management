@@ -12,9 +12,9 @@ class ScheduleController extends Controller
 {
     public function index(Request $request){
         if($request->get('search') != null){
-            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->simplePaginate(10);
+            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->paginate(10);
         }else {
-            $schedules = Schedule::with('users')->simplePaginate(10);
+            $schedules = Schedule::with('users')->paginate(10);
         }
         return view('schedule.index', ['schedules' => $schedules]);
     }
