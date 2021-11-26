@@ -12,9 +12,9 @@ class ScheduleController extends Controller
 {
     public function index(Request $request){
         if($request->get('search') != null){
-            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->get();
+            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->simplePaginate(10);
         }else {
-            $schedules = Schedule::all()->load('users');
+            $schedules = Schedule::with('users')->simplePaginate(10);
         }
         return view('schedule.index', ['schedules' => $schedules]);
     }
@@ -27,7 +27,10 @@ class ScheduleController extends Controller
     }
 
     public function delete($scheduleId){
-        dd($scheduleId);
+        $schedule = Schedule::findOrFail($scheduleId);
+        $schedule->users()->sync([]);
+        $schedule->delete();
+        return redirect()->route('schedule.index', ['option' => 'all']);
     }
 
     public function store(Request $request){

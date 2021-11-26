@@ -60,7 +60,7 @@
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
                                             <a><i class="far fa-edit"></i></a>
-                                            <a onclick="alert('Press a button!\nEither OK or Cancel.')" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @elseif($user->pivot->status == 1 && $option == 'processing')
@@ -76,7 +76,7 @@
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
                                             <a><i class="far fa-edit"></i></a>
-                                            <a onclick="alert('Press a button!\nEither OK or Cancel.')" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @elseif($user->pivot->status == 2 && $option == 'done')
@@ -92,7 +92,7 @@
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
                                             <a><i class="far fa-edit"></i></a>
-                                            <a onclick="alert('Press a button!\nEither OK or Cancel.')" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @elseif($user->pivot->status == 3 && $option == 'interrupted')
@@ -108,7 +108,7 @@
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
                                             <a><i class="far fa-edit"></i></a>
-                                            <a onclick="alert('Press a button!\nEither OK or Cancel.')" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @elseif($option == 'all')
@@ -137,7 +137,7 @@
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
                                             <a><i class="far fa-edit"></i></a>
-                                            <a onclick="alert('Press a button!\nEither OK or Cancel.')" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @endif
@@ -145,6 +145,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <span style="text-align: center;">
+                        {{ $schedules->links() }}
+                    </span>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

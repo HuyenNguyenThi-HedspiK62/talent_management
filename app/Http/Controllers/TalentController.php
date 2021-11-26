@@ -83,6 +83,15 @@ class TalentController extends Controller
      * @return \Illuminate\Http\Response
      */
     
+
+    public function delete($talentId){
+        $talent = User::findOrFail($talentId);
+        $talent->delete();
+        $talents = User::orderBy('created_at','desc')->simplePaginate(10);
+        return view('talent.show')->with('talents', $talents);
+    }
+
+
     public function editTalent($id){
         return view('talent.edit')->with('talent', User::find($id));
     }

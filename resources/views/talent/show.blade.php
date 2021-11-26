@@ -145,7 +145,8 @@ td, th {
                         <td>{{ $talent->join_company_date }}</td>
                         <td>
                             <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <!-- <a  href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" >&#xE872;</i></a> -->
+                            <a href="{{ route('talent.delete', ['talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                             <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}" class="show" title="Show" data-toggle="tooltip" ><i class="material-icons">remove_red_eye</i></a>
 
                         </td>
