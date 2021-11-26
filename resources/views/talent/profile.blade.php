@@ -121,6 +121,13 @@ table.table .form-control.error {
 .col-md-6 {
     margin-left: 40px
 }
+
+@if(auth()->user()->role == 1)
+    body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 0px!important;
+@endif
+}
 </style>
 <div class="container-lg">
     <div class="table-responsive">
