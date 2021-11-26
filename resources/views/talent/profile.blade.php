@@ -123,9 +123,11 @@ table.table .form-control.error {
 }
 
 @if(auth()->user()->role == 1)
-    body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
-    transition: margin-left .3s ease-in-out;
-    margin-left: 0px!important;
+@media (min-width: 768px)
+    body:not(.sidebar-mini-md) .content-wrapper, body:not(.sidebar-mini-md) .main-footer, body:not(.sidebar-mini-md) .main-header {
+        transition: margin-left .3s ease-in-out;
+        margin-left: 0px!important;
+    }
 @endif
 }
 </style>
