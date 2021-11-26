@@ -19,10 +19,10 @@ class TalentController extends Controller
     {
         // $talents = User::orderBy('created_at','desc')->paginate(10);
         if($request->get('search') != null) {
-            $talents = User::orderBy('created_at','desc')->where('name', 'like', '%'. $request->get('search') .'%')->orWhere('email', 'like', '%'. $request->get('search') .'%')->simplePaginate(10);
+            $talents = User::where('role',1)->orderBy('created_at','desc')->where('name', 'like', '%'. $request->get('search') .'%')->orWhere('email', 'like', '%'. $request->get('search') .'%')->simplePaginate(10);
         }
         else {
-            $talents = User::orderBy('created_at','desc')->simplePaginate(10);
+            $talents = User::where('role',1)->orderBy('created_at','desc')->simplePaginate(10);
         }
         return view('talent.show')->with('talents', $talents);
     }
@@ -45,7 +45,7 @@ class TalentController extends Controller
      */
     public function store(Request $request)
     {
-        //   
+        //
         $talent = new User;
         $talent->name = $request->tname;
         $talent->email = $request->email;
@@ -82,19 +82,19 @@ class TalentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
 
     public function delete($talentId){
         $talent = User::findOrFail($talentId);
         $talent->delete();
-        $talents = User::orderBy('created_at','desc')->simplePaginate(10);  
+        $talents = User::orderBy('created_at','desc')->simplePaginate(10);
         return view('talent.show')->with('talents', $talents);
     }
 
 
     public function editTalent($id){
         return view('talent.edit')->with('talent', User::find($id));
-        
+
     }
     /**
      * Update the specified resource in storage.

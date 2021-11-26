@@ -20,7 +20,7 @@
 
         .button {
         display: flex;
-        float: right; 
+        float: right;
         padding-bottom: 50px;
         padding-right: 75px;
         }
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="button">
-                        <a href="/home" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
+                        <a href="{{route('talent.index')}}" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
                         <button type="submit" class="btn btn-success">編集</button>
                     </div>
                   </form>

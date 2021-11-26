@@ -57,7 +57,7 @@ table.table td a {
     display: inline-block;
     margin: 0 5px;
     min-width: 24px;
-}    
+}
 table.table td a.add {
     color: #27C46B;
 }
@@ -73,7 +73,7 @@ table.table td a.delete {
 table.table td i {
     font-size: 19px;
 }
-    
+
 table.table .form-control {
     height: 32px;
     line-height: 32px;
@@ -99,13 +99,13 @@ table.table .form-control.error {
     font-size: 13px;
     min-height: 30px;
     min-width: 100px;
-    
+
 }
 .col-md-6 {
     margin-top: 6px;
 }
 .radiobutton {
-    
+
 }
 #nam, #nu {
     margin-top: 7px;
@@ -125,10 +125,11 @@ table.table .form-control.error {
 <div class="container-lg">
     <div class="table-responsive">
     <div class="table-wrapper">
+            @if($talent->role == 0)
             <div style="margin-left: 800px">
                 <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
             </div>
-            
+            @endif
            <div class="card-body">
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">名前</label>
@@ -145,7 +146,7 @@ table.table .form-control.error {
                         </div>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">性</label>
-                            <div class="col-md-6 radiostyle row"> 
+                            <div class="col-md-6 radiostyle row">
                             @if ($talent->gender === 1)
                                 <input type="radio" id="nam" name="fav_language" value="男" checked>
                                 <label for="css" style="margin-left: 7px">男</label><br>
@@ -168,20 +169,20 @@ table.table .form-control.error {
                                 <input type="radio" id="nu" name="fav_language" value="他" checked>
                                 <label for="css" style="margin-left: 7px">他</label><br>
                             @endif
-                                  
+                                 
                              </div>
-                        </div> 
+                        </div>
 
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">詳細の情報</label>
                             <div class="col-md-6">
-                            <ul style="margin-left: -25px">  
-                                @foreach ($infos as $info)  
-                                    <li>{{ $info }}</li> 
-                                @endforeach        
-                                                 
+                            <ul style="margin-left: -25px">
+                                @foreach ($infos as $info)
+                                    <li>{{ $info }}</li>
+                                @endforeach
+
                             </ul>
-                            
+
                             </div>
                         </div>
 
@@ -189,7 +190,7 @@ table.table .form-control.error {
 
 
             <div class="table-title">
-               
+
                 <div class="table-text"><h2>自分のタスク</b></h2></div>
             </div>
             <div class="container-fluid">
@@ -293,5 +294,5 @@ table.table .form-control.error {
             </div>
         </div>
     </div>
-</div>     
+</div>
 @endsection
