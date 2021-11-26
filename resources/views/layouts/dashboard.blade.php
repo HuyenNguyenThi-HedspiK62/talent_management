@@ -17,15 +17,17 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper" @if(auth()->user()->role == 1) style="margin-left: -75px" @endif>
+<div class="wrapper" @if(auth()->user()->role == 1) style="margin-left: -250px" @endif>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
+        @if(auth()->user()->role == 1)
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
+        @endif
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
