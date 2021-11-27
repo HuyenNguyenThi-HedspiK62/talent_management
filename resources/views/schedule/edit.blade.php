@@ -70,7 +70,7 @@
                       <select class="form-control" name="person">
                         <option disabled>担当者:</option>
                         @foreach($persons as $person)
-                          <option value="{{$person->id}}">{{$person->id}}</option>
+                          <option value="{{$person->id}}">{{$person->name}}</option>
                         @endforeach
                       </select>
                     </div>
