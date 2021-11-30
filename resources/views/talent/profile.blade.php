@@ -147,28 +147,12 @@ table.table .form-control.error {
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">性</label>
                             <div class="col-md-6 radiostyle row">
-                            @if ($talent->gender === 1)
-                                <input type="radio" id="nam" name="fav_language" value="男" checked>
+                                <input type="radio" id="nam" name="fav_language" value="男" @if($talent->gender == 1) checked @endif >
                                 <label for="css" style="margin-left: 7px">男</label><br>
-                                <input type="radio" id="nu" name="fav_language" value="女">
+                                <input type="radio" id="nu" name="fav_language" value="女" @if($talent->gender == 2) checked @endif>
                                  <label for="css" style="margin-left: 7px">女</label><br>
-                                <input type="radio" id="nu" name="fav_language" value="他">
+                                <input type="radio" id="nu" name="fav_language" value="他" @if($talent->gender == 0) checked @endif>
                                 <label for="css" style="margin-left: 7px">他</label><br>
-                            @elseif ($talent->gender === 0)
-                                <input type="radio" id="nam" name="fav_language" value="男">
-                                <label for="css" style="margin-left: 7px">男</label><br>
-                                <input type="radio" id="nu" name="fav_language" value="女" checked>
-                                 <label for="css" style="margin-left: 7px">女</label><br>
-                                <input type="radio" id="nu" name="fav_language" value="他">
-                                <label for="css" style="margin-left: 7px">他</label><br>
-                            @else
-                                <input type="radio" id="nam" name="fav_language" value="男">
-                                <label for="css" style="margin-left: 7px">男</label><br>
-                                <input type="radio" id="nu" name="fav_language" value="女">
-                                 <label for="css" style="margin-left: 7px">女</label><br>
-                                <input type="radio" id="nu" name="fav_language" value="他" checked>
-                                <label for="css" style="margin-left: 7px">他</label><br>
-                            @endif
                                  
                              </div>
                         </div>

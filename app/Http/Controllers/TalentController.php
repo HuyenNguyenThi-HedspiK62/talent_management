@@ -19,10 +19,10 @@ class TalentController extends Controller
     {
         // $talents = User::orderBy('created_at','desc')->paginate(10);
         if($request->get('search') != null) {
-            $talents = User::where('role',1)->orderBy('created_at','desc')->where('name', 'like', '%'. $request->get('search') .'%')->orWhere('email', 'like', '%'. $request->get('search') .'%')->simplePaginate(10);
+            $talents = User::where('role', 1)->orderBy('created_at','desc')->where('name', 'like', '%'. $request->get('search') .'%')->orWhere('email', 'like', '%'. $request->get('search') .'%')->simplePaginate(10);
         }
         else {
-            $talents = User::where('role',1)->orderBy('created_at','desc')->simplePaginate(10);
+            $talents = User::where('role', 1)->orderBy('created_at','desc')->simplePaginate(10);
         }
         return view('talent.show')->with('talents', $talents);
     }
