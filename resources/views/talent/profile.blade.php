@@ -126,8 +126,10 @@ table.table .form-control.error {
     <div class="table-responsive">
     <div class="table-wrapper">
             @if(auth()->user()->role == 0)
-            <div style="margin-left: 800px">
-                <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+            <div style="margin-left: 800px" class="form-group row">
+              <a style="color: black" href="{{ route('talent.edit', $talent->id) }}" ><i class="far fa-edit"></i></a>
+                <div style="margin-left: 10px">編集</div>
+                <!-- <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
             </div>
             @endif
            <div class="card-body">

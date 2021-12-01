@@ -17,9 +17,7 @@ class TalentController extends Controller
      */
     public function index(Request $request)
     {
-        // $talents = User::where('role', 1)->orderBy('created_at','desc')->paginate(10);
         if($request->get('search') != null) {
-            // $talents = User::where('role', 1)->orderBy('created_at','desc')->where('name', 'like', '%'. $request->get('search') .'%')->simplePaginate(10);
             $talents = User::where('role', 1)->orderBy('created_at','desc')
             ->where(function($query) use ($request){
                 $query->where('name', 'like', '%'. $request->get('search') .'%')
