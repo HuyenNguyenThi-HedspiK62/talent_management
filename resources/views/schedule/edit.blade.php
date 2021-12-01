@@ -68,10 +68,39 @@
                     </div>
                     <div class="col-md-8">
                       <select class="form-control" name="person">
-                        <option disabled>担当者:</option>
+                        <option value = "{{$schedule->users[0]->id}}">{{$schedule->users[0]->name}}</option>
                         @foreach($persons as $person)
                           <option value="{{$person->id}}">{{$person->name}}</option>
                         @endforeach
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <label for="exampleFormControlSelect1">ステータス (*)</label>
+                    </div>
+                    <div class="col-md-8">
+                      <select class="form-control" name="status" id="exampleFormControlSelect2">
+                        @switch($schedule->users[0]->pivot->status)
+                        @case(0)
+                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>未着手</option>
+                        @break
+                        @case(1)
+                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>進行中</option>
+                        @break
+                        @case(2)
+                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>完了</option>
+                        @break
+                        @case(3)
+                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>中断</option>
+                        @break
+                    @endswitch
+                        <option value="0">未着手</option>
+                        <option value="1">進行中</option>
+                        <option value="2">完了</option>
+                        <option value="3">中断</option>
                       </select>
                     </div>
                   </div>

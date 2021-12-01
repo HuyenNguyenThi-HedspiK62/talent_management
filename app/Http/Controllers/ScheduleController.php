@@ -43,9 +43,9 @@ class ScheduleController extends Controller
         $schedule->users()->attach($request->get('person'));
 
         if($request->get('search') != null){
-            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->get();
+            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->orderBy('id', 'desc')->simplePaginate(10);
         }else {
-            $schedules = Schedule::all()->load('users');
+            $schedules = Schedule::with('users')->orderBy('id', 'desc')->simplePaginate(10);
         }
         $persons = DB::table('users')->get();
         return view('schedule.index', compact('persons','schedules'));
@@ -64,17 +64,15 @@ class ScheduleController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
-        //dd($request);
         $schedule = Schedule::find($id);
         $schedule->schedule_name = $request->schedulename;
         $schedule->date = $request->date;
         $schedule->location = $request->location;
         $schedule->information = $request->info;
         $schedule->save();
+        DB::table('tasks')->where('schedule_id', $id)->update(['tasks.status' => $request->status]);
         $schedule->users()->sync($request->get('person'));
         $talentId = $request->get('person');
-        //dd($request->get('person'));
         return redirect()->route('schedule.show', ['scheduleId' => $id, 'userId'=>$talentId]);
     }
 }

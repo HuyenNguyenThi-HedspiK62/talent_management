@@ -50,6 +50,14 @@ class TalentController extends Controller
     public function store(Request $request)
     {
         //
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email|unique',
+        //     'password' => 'required|min:8',
+        //     'role' => 'required',
+        //     'gender' => 'required',
+        //     'date' => 'required'
+        // ]);
         $talent = new User;
         $talent->name = $request->tname;
         $talent->email = $request->email;
@@ -109,12 +117,11 @@ class TalentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $data = request()->all();
         $talent = User::find($id);
         $talent->name = $data['tname'];
         $talent->email = $data['email'];
-        $talent->gender = $request->has('gender');
+        $talent->gender = $request->gender;
         $talent->join_company_date = $data['date'];
         $talent->information = $data['description'];
         $talent->save();
