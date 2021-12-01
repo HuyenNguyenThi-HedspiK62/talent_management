@@ -58,15 +58,15 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 1) checked @endif id="male">
+                                    <input class="form-check-input" type="radio" name="gender" value="1" {{$talent->gender == '1' ? 'checked' : ''}} id="male">
                                     <label class="form-check-label" for="inlineRadio1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 2) checked @endif id="female">
+                                    <input class="form-check-input" type="radio" name="gender" value="2" @if($talent->gender == 2) checked @endif id="female">
                                     <label class="form-check-label" for="inlineRadio2">女</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" @if($talent->gender == 0) checked @endif id="other">
+                                    <input class="form-check-input" type="radio" name="gender" value="0" @if($talent->gender == 0) checked @endif id="other">
                                     <label class="form-check-label" for="inlineRadio1">他の性</label>
                                 </div>
                             </div>

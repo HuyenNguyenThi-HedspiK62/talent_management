@@ -76,6 +76,10 @@
                                     <input class="form-check-input" type="radio" name="gender" id="female" value="2">
                                     <label class="form-check-label" for="inlineRadio2">女</label>
                                 </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="other" value="0">
+                                    <label class="form-check-label" for="inlineRadio2">他の性</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,7 +105,7 @@
                     </div>
                     <div class="button">
                         <a href="{{route('talent.index')}}" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
-                        <button type="submit" class="btn btn-success">編集</button>
+                        <button type="submit" class="btn btn-success">登記</button>
                     </div>
                   </form>
             </div>

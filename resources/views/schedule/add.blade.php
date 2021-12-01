@@ -79,19 +79,6 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col-md-3">
-                          <label for="exampleFormControlSelect1">ステータス (*)</label>
-                        </div>
-                        <div class="col-md-8">
-                          <select class="form-control" name="status" id="exampleFormControlSelect2">
-                            <option selected disabled>ステータス</option>
-					                  <option value="status">未着手</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-md-3">
                           <label for="exampleFormControlTextarea1">詳細の情報</label>
                         </div>
                         <div class="col-md-8">
