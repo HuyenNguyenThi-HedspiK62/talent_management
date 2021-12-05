@@ -38,9 +38,12 @@
                                 <label for="exampleFormControlInput1">名前　(*)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" name="tname" class="form-control" placeholder="名前を入力して下さい">
+                                <input type="text" name="tname" class="form-control" placeholder="名前を入力して下さい" class="@error('tname') is-invalid @enderror">
                             </div>
                         </div>
+                        @error('tname')
+                            <div class="alert alert-danger">名前を入力して下さい</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -48,9 +51,12 @@
                                 <label for="exampleFormControlInput1">メールアドレス　(*)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい">
+                                <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい" class="@error('email') is-invalid @enderror">
                             </div>
                         </div>
+                        @error('email')
+                            <div class="alert alert-danger">メールアドレスをもう一度入力して下さい</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -69,19 +75,22 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="male" value="1">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="1" class="@error('gender') is-invalid @enderror">
                                     <label class="form-check-label" for="inlineRadio1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="female" value="2">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="2" class="@error('gender') is-invalid @enderror">
                                     <label class="form-check-label" for="inlineRadio2">女</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="other" value="0">
+                                    <input class="form-check-input" type="radio" name="gender" id="other" value="0" class="@error('gender') is-invalid @enderror">
                                     <label class="form-check-label" for="inlineRadio2">他の性</label>
                                 </div>
                             </div>
                         </div>
+                        @error('gender')
+                            <div class="alert alert-danger">性を入力して下さい</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -89,9 +98,12 @@
                                 <label for="exampleFormControlSelect1">会社入日　(*)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="date" name="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY">
+                                <input type="date" name="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY" class="@error('date') is-invalid @enderror">
                             </div>
                         </div>
+                        @error('date')
+                            <div class="alert alert-danger">会社入日を入力して下さい</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">

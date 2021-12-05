@@ -37,9 +37,12 @@
                               <label for="exampleFormControlInput1">名前　(*)</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="text" name="tname" class="form-control" id="exampleFormControlInput1" placeholder="名前を入力して下さい" value="{{$talent->name}}">
+                              <input type="text" name="tname" class="form-control" id="exampleFormControlInput1" placeholder="名前を入力して下さい" value="{{$talent->name}}" class="@error('tname') is-invalid @enderror">
                             </div>
                         </div>
+                        @error('tname')
+                            <div class="alert alert-danger">名前を入力して下さい</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -47,9 +50,12 @@
                                 <label for="exampleFormControlInput1">メールアドレス　(*)</label>
                             </div>
                             <div class="col-md-8">
-                              <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい" value="{{ $talent->email }}">
+                              <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい" value="{{ $talent->email }}" class="@error('email') is-invalid @enderror">
                             </div>
                         </div>
+                        @error('email')
+                            <div class="alert alert-danger">メールアドレスをもう一度入力して下さい</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -58,19 +64,22 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" value="1" {{$talent->gender == '1' ? 'checked' : ''}} id="male">
+                                    <input class="form-check-input" type="radio" name="gender" value="1" {{$talent->gender == '1' ? 'checked' : ''}} id="male" class="@error('gender') is-invalid @enderror">
                                     <label class="form-check-label" for="inlineRadio1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" value="2" @if($talent->gender == 2) checked @endif id="female">
+                                    <input class="form-check-input" type="radio" name="gender" value="2" @if($talent->gender == 2) checked @endif id="female" class="@error('gender') is-invalid @enderror">
                                     <label class="form-check-label" for="inlineRadio2">女</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" value="0" @if($talent->gender == 0) checked @endif id="other">
+                                    <input class="form-check-input" type="radio" name="gender" value="0" @if($talent->gender == 0) checked @endif id="other" class="@error('gender') is-invalid @enderror">
                                     <label class="form-check-label" for="inlineRadio1">他の性</label>
                                 </div>
                             </div>
                         </div>
+                        @error('gender')
+                            <div class="alert alert-danger">性を入力して下さい</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -78,9 +87,12 @@
                                 <label for="exampleFormControlSelect1">会社入日　(*)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="date" name="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY" value="{{ $talent->join_company_date }}">
+                                <input type="date" name="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY" value="{{ $talent->join_company_date }}" class="@error('date') is-invalid @enderror">
                             </div>
                         </div>
+                        @error('date')
+                            <div class="alert alert-danger">会社入日を入力して下さい</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">

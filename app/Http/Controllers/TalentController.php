@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Schedule;
 use App\Models\Task;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Validator;
 class TalentController extends Controller
 {
     /**
@@ -50,25 +50,29 @@ class TalentController extends Controller
     public function store(Request $request)
     {
         //
-        // $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required|email|unique',
-        //     'password' => 'required|min:8',
-        //     'role' => 'required',
-        //     'gender' => 'required',
-        //     'date' => 'required'
-        // ]);
-        $talent = new User;
-        $talent->name = $request->tname;
-        $talent->email = $request->email;
-        $talent->password = bcrypt($request->password);
-        $talent->gender = $request->input('gender');
-        $talent->role = '1';
-        $talent->join_company_date = $request->date;
-        $talent->information = $request->description;
-        $talent->save();
-        $talents = User::orderBy('created_at','desc')->simplePaginate(10);
-        return view('talent.show', compact('talents'));
+        $validate = Validator::make($request->all(),
+            [
+                'tname' => 'required|string',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:8',
+                'gender' => 'required',
+                'date' => 'required|date'
+            ]);
+            if ($validate->fails()) {
+                return redirect()->back()->withInput()->withErrors($validate);
+            } else {
+                $talent = new User;
+                $talent->name = $request->tname;
+                $talent->email = $request->email;
+                $talent->password = bcrypt($request->password);
+                $talent->gender = $request->input('gender');
+                $talent->role = '1';
+                $talent->join_company_date = $request->date;
+                $talent->information = $request->description;
+                $talent->save();
+                $talents = User::orderBy('created_at','desc')->simplePaginate(10);
+                return view('talent.show', compact('talents'));
+            }
     }
 
     public function addTalent(){
@@ -117,17 +121,27 @@ class TalentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = request()->all();
-        $talent = User::find($id);
-        $talent->name = $data['tname'];
-        $talent->email = $data['email'];
-        $talent->gender = $request->gender;
-        $talent->join_company_date = $data['date'];
-        $talent->information = $data['description'];
-        $talent->save();
-        $infos = explode(". ", $talent->information);
-        $results = $talent->schedule;
-        return view('talent.profile', ['talent' => $talent, 'infos' => $infos, 'results' => $results]);
+        $validate = Validator::make($request->all(),
+            [
+                'tname' => 'string',
+                'email' => 'email',
+                'date' => 'date'
+            ]);
+            if ($validate->fails()) {
+                return redirect()->back()->withInput()->withErrors($validate);
+            } else {
+                $data = request()->all();
+                $talent = User::find($id);
+                $talent->name = $data['tname'];
+                $talent->email = $data['email'];
+                $talent->gender = $request->gender;
+                $talent->join_company_date = $data['date'];
+                $talent->information = $data['description'];
+                $talent->save();
+                $infos = explode(". ", $talent->information);
+                $results = $talent->schedule;
+                return view('talent.profile', ['talent' => $talent, 'infos' => $infos, 'results' => $results]);
+            }
     }
 
     /**

@@ -7,7 +7,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Validator;
 class ScheduleController extends Controller
 {
     public function index(Request $request){
@@ -34,6 +34,16 @@ class ScheduleController extends Controller
     }
 
     public function store(Request $request){
+        $validate = Validator::make($request->all(),
+            [
+                'schedulename' => 'required|string',
+                'location' => 'required|string',
+                'person' => 'required',
+                'date' => 'required|date'
+            ]);
+            if ($validate->fails()) {
+                return redirect()->back()->withInput()->withErrors($validate);
+            }
         $schedule = new Schedule();
         $schedule->schedule_name = $request->schedulename;
         $schedule->date = $request->date;
@@ -64,6 +74,16 @@ class ScheduleController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validate = Validator::make($request->all(),
+            [
+                'schedulename' => 'string',
+                'location' => 'string',
+                'date' => 'date',
+                'status' => 'required'
+            ]);
+            if ($validate->fails()) {
+                return redirect()->back()->withInput()->withErrors($validate);
+            }
         $schedule = Schedule::find($id);
         $schedule->schedule_name = $request->schedulename;
         $schedule->date = $request->date;
