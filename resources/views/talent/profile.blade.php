@@ -11,7 +11,7 @@
     font-family: 'Open Sans', sans-serif;
 } */
 .table-wrapper {
-    width: 900px;
+    width: 100%;
     margin: 0px auto;
     background: #fff;
     padding: 10px;
@@ -126,13 +126,13 @@ table.table .form-control.error {
     <div class="table-responsive">
     <div class="table-wrapper">
             @if(auth()->user()->role == 0)
-            <div style="margin-left: 800px" class="form-group row">
+            <div style="margin-left: 900px;" class="form-group row">
               <a style="color: black" href="{{ route('talent.edit', $talent->id) }}" ><i class="far fa-edit"></i></a>
                 <div style="margin-left: 10px">編集</div>
                 <!-- <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
             </div>
             @endif
-           <div class="card-body">
+           <div class="card-body" style="margin-top: -100px">
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">名前</label>
                             <div class="col-md-6" >
