@@ -145,9 +145,9 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <span style="text-align: center;">
-                        {{ $schedules->links() }}
-                    </span>
+{{--                    <span style="text-align: center;">--}}
+{{--                        {{ $schedules->links() }}--}}
+{{--                    </span>--}}
                 </div>
             </div>
         </div><!-- /.container-fluid -->
