@@ -38,12 +38,13 @@
                                 <label for="exampleFormControlInput1">名前　(*)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" name="tname" class="form-control" placeholder="名前を入力して下さい" class="@error('tname') is-invalid @enderror">
+                                <input type="text" name="tname" class="form-control" value="{{old('tname')}}" placeholder="名前を入力して下さい" class="@error('tname') is-invalid @enderror">
+                                @error('tname')
+                                <span class="text-danger">名前を入力して下さい</span>
+                                @enderror
                             </div>
                         </div>
-                        @error('tname')
-                            <div class="alert alert-danger">名前を入力して下さい</div>
-                        @enderror
+
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -51,12 +52,13 @@
                                 <label for="exampleFormControlInput1">メールアドレス　(*)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい" class="@error('email') is-invalid @enderror">
+                                <input type="email" name="email" class="form-control" value="{{old('email')}}" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい" class="@error('email') is-invalid @enderror">
+                                @error('email')
+                                <span class="text-danger">すでに登録されているメールアドレスです。</span>
+                                @enderror
                             </div>
                         </div>
-                        @error('email')
-                            <div class="alert alert-danger">メールアドレスをもう一度入力して下さい</div>
-                        @enderror
+
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -64,7 +66,7 @@
                                 <label for="exampleFormControlInput1">パスワード　(*)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="パスワードを入力して下さい">
+                                <input type="password" value="{{old('password')}}" name="password" class="form-control" id="exampleFormControlInput1" placeholder="パスワードを入力して下さい">
                             </div>
                         </div>
                     </div>
@@ -75,22 +77,23 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="male" value="1" class="@error('gender') is-invalid @enderror">
+                                    <input class="form-check-input" @if(old('gender') === "1") checked @endif type="radio" name="gender" id="male" value="1" class="@error('gender') is-invalid @enderror">
                                     <label class="form-check-label" for="inlineRadio1">男</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="female" value="2" class="@error('gender') is-invalid @enderror">
+                                    <input class="form-check-input" @if(old('gender') === "2") checked @endif type="radio" name="gender" id="female" value="2" class="@error('gender') is-invalid @enderror">
                                     <label class="form-check-label" for="inlineRadio2">女</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="other" value="0" class="@error('gender') is-invalid @enderror">
+                                    <input class="form-check-input" @if(old('gender') === "0") checked @endif type="radio" name="gender" id="other" value="0" class="@error('gender') is-invalid @enderror">
                                     <label class="form-check-label" for="inlineRadio2">他の性</label>
                                 </div>
+                                @error('gender')
+                                    <p class="text-danger">性を入力して下さい</p>
+                                @enderror
                             </div>
+
                         </div>
-                        @error('gender')
-                            <div class="alert alert-danger">性を入力して下さい</div>
-                        @enderror
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -98,12 +101,13 @@
                                 <label for="exampleFormControlSelect1">会社入日　(*)</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="date" name="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY" class="@error('date') is-invalid @enderror">
+                                <input type="date" name="date" class="form-control" value="{{old('date')}}" id="exampleFormControlInput1" placeholder="MM/DD/YYYY" class="@error('date') is-invalid @enderror">
+                                @error('date')
+                                <span class="text-danger">会社入日を入力して下さい</span>
+                                @enderror
                             </div>
                         </div>
-                        @error('date')
-                            <div class="alert alert-danger">会社入日を入力して下さい</div>
-                        @enderror
+
                     </div>
                     <div class="form-group">
                         <div class="row">
@@ -111,7 +115,7 @@
                             <label for="exampleFormControlTextarea1">詳細の情報</label>
                             </div>
                             <div class="col-md-8">
-                            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+                            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="7">{{old('description')}}</textarea>
                             </div>
                         </div>
                     </div>

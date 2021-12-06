@@ -38,11 +38,12 @@
                     </div>
                     <div class="col-md-8">
                       <input type="text" name="schedulename" value="{{ $schedule->schedule_name }}" class="form-control" placeholder="スケジュール名を入力して下さい" class="@error('schedulename') is-invalid @enderror">
+                        @error('schedulename')
+                        <span class="text-danger">スケジュール名を入力して下さい</span>
+                        @enderror
                     </div>
                   </div>
-                  @error('schedulename')
-                        <div class="alert alert-danger">スケジュール名を入力して下さい</div>
-                      @enderror
+
                 </div>
                 <div class="form-group">
                   <div class="row">
@@ -51,11 +52,12 @@
                     </div>
                     <div class="col-md-8">
                       <input type="date" name="date" value="{{ $schedule->date }}" class="form-control" id="exampleFormControlInput1" class="@error('date') is-invalid @enderror">
+                        @error('date')
+                        <span class="text-danger">開始日を入力して下さい</span>
+                        @enderror
                     </div>
                   </div>
-                  @error('date')
-                        <div class="alert alert-danger">開始日を入力して下さい</div>
-                      @enderror
+
                 </div>
                 <div class="form-group">
                   <div class="row">
@@ -64,11 +66,12 @@
                     </div>
                     <div class="col-md-8">
                       <input type="text" name="location" value="{{ $schedule->location }}" class="form-control" placeholder="場所を入力して下さい" class="@error('location') is-invalid @enderror">
+                        @error('location')
+                        <span class="text-danger">場所を入力して下さい</span>
+                        @enderror
                     </div>
                   </div>
-                  @error('location')
-                        <div class="alert alert-danger">場所を入力して下さい</div>
-                      @enderror
+
                 </div>
                 <div class="form-group">
                   <div class="row">
@@ -82,11 +85,12 @@
                           <option value="{{$person->id}}">{{$person->name}}</option>
                         @endforeach
                       </select>
+                        @error('person')
+                        <span class="text-danger">担当者を入力して下さい</span>
+                        @enderror
                     </div>
                   </div>
-                  @error('person')
-                        <div class="alert alert-danger">担当者を入力して下さい</div>
-                      @enderror
+
                 </div>
                 <div class="form-group">
                   <div class="row">
@@ -94,31 +98,15 @@
                       <label for="exampleFormControlSelect1">ステータス (*)</label>
                     </div>
                     <div class="col-md-8">
-                      <select class="form-control" name="status" id="exampleFormControlSelect2" class="@error('status') is-invalid @enderror">
-                        @switch($schedule->users[0]->pivot->status)
-                        @case(0)
-                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>未着手</option>
-                        @break
-                        @case(1)
-                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>進行中</option>
-                        @break
-                        @case(2)
-                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>完了</option>
-                        @break
-                        @case(3)
-                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>中断</option>
-                        @break
-                    @endswitch
-                        <option value="0">未着手</option>
-                        <option value="1">進行中</option>
-                        <option value="2">完了</option>
-                        <option value="3">中断</option>
+                      <select class="form-control" name="status" id="exampleFormControlSelect2">
+                        <option @if($schedule->users[0]->pivot->status == 0) selected @endif value="0">未着手</option>
+                        <option @if($schedule->users[0]->pivot->status == 1) selected @endif value="1">進行中</option>
+                        <option @if($schedule->users[0]->pivot->status == 2) selected @endif value="2">完了</option>
+                        <option @if($schedule->users[0]->pivot->status == 3) selected @endif value="3">中断</option>
                       </select>
                     </div>
                   </div>
-                  @error('status')
-                        <div class="alert alert-danger">ステータスを入力して下さい</div>
-                      @enderror
+
                 </div>
                 <div class="form-group">
                   <div class="row">

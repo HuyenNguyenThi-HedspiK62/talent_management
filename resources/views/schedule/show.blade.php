@@ -78,7 +78,7 @@
 @section('script')
 <script>
     function deleteSchedule(scheduleId) {
-        if (confirm('want to delete')) {
+        if (confirm('このスケジュールを削除してもよろしいですか？')) {
             window.location.href = 'http://' + window.location.host + '/schedule/delete/' + scheduleId;
         }
     }

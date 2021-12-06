@@ -103,7 +103,7 @@ class TalentController extends Controller
         $talent = User::findOrFail($talentId);
         $talent->delete();
         $talents = User::orderBy('created_at','desc')->simplePaginate(10);
-        return view('talent.show')->with('talents', $talents);
+        return redirect()->route('talent.index');
     }
 
 
@@ -139,7 +139,7 @@ class TalentController extends Controller
                 $talent->save();
                 $infos = explode(". ", $talent->information);
                 $results = $talent->schedule;
-                return view('talent.profile', ['talent' => $talent, 'infos' => $infos, 'results' => $results]);
+                return redirect()->route('talent.show', ['talent' => $talent->id, 'option' => 'all']);
             }
     }
 

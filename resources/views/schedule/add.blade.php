@@ -37,12 +37,13 @@
                           <label for="exampleFormControlInput1">スケジュール名 (*)</label>
                         </div>
                         <div class="col-md-8">
-                          <input type="text" name="schedulename" class="form-control" placeholder="スケジュール名を入力して下さい" class="@error('schedulename') is-invalid @enderror">
+                          <input value="{{old('schedulename')}}" type="text" name="schedulename" class="form-control" placeholder="スケジュール名を入力して下さい" class="@error('schedulename') is-invalid @enderror">
+                            @error('schedulename')
+                            <span class="text-danger">スケジュール名を入力して下さい</span>
+                            @enderror
                         </div>
                       </div>
-                      @error('schedulename')
-                        <div class="alert alert-danger">スケジュール名を入力して下さい</div>
-                      @enderror
+
                     </div>
                     <div class="form-group">
                       <div class="row">
@@ -50,12 +51,12 @@
                           <label for="exampleFormControlInput1">開始日 (*)</label>
                         </div>
                         <div class="col-md-8">
-                          <input type="date" name="date" class="form-control" id="exampleFormControlInput1" class="@error('date') is-invalid @enderror">
+                          <input value="{{old('date')}}" type="date" name="date" class="form-control" id="exampleFormControlInput1" class="@error('date') is-invalid @enderror">
+                            @error('date')
+                            <span class="text-danger">開始日を入力して下さい</span>
+                            @enderror
                         </div>
                       </div>
-                      @error('date')
-                            <div class="alert alert-danger">開始日を入力して下さい</div>
-                      @enderror
                     </div>
                     <div class="form-group">
                       <div class="row">
@@ -63,12 +64,13 @@
                           <label for="exampleFormControlInput1">場所 (*)</label>
                         </div>
                         <div class="col-md-8">
-                          <input type="text" name="location" class="form-control" placeholder="場所を入力して下さい" class="@error('location') is-invalid @enderror">
+                          <input value="{{old('location')}}" type="text" name="location" class="form-control" placeholder="場所を入力して下さい" class="@error('location') is-invalid @enderror">
+                            @error('location')
+                            <span class="text-danger">場所を入力して下さい</span>
+                            @enderror
                         </div>
                       </div>
-                      @error('location')
-                            <div class="alert alert-danger">場所を入力して下さい</div>
-                      @enderror
+
                     </div>
                     <div class="form-group">
                       <div class="row">
@@ -79,14 +81,15 @@
                           <select class="form-control" name="person" id="exampleFormControlSelect2" class="@error('person') is-invalid @enderror">
                             <option selected disabled>担当者</option>
                             @foreach($persons as $person)
-					                    <option value="{{$person->id}}">{{$person->name}}</option>
-					                  @endforeach
+                                  <option @if(old('person') == $person->id) selected @endif value="{{$person->id}}">{{$person->name}}</option>
+                              @endforeach
                           </select>
+                            @error('person')
+                                <span class="text-danger">担当者を入力して下さい</span>
+                            @enderror
                         </div>
                       </div>
-                      @error('person')
-                            <div class="alert alert-danger">担当者を入力して下さい</div>
-                      @enderror
+
                     </div>
                     <div class="form-group">
                       <div class="row">
@@ -94,7 +97,7 @@
                           <label for="exampleFormControlTextarea1">詳細の情報</label>
                         </div>
                         <div class="col-md-8">
-                          <textarea class="form-control" name="info" id="exampleFormControlTextarea1" rows="7"></textarea>
+                          <textarea class="form-control" name="info" id="exampleFormControlTextarea1" rows="7">{{old('info')}}</textarea>
                         </div>
                       </div>
                     </div>
