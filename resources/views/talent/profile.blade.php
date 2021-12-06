@@ -132,7 +132,7 @@ table.table .form-control.error {
                 <!-- <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
             </div>
             @endif
-           <div class="card-body" style="margin-top: -100px">
+           <div class="card-body" @if(auth()->user()->role == 0) style="margin-top: -60px" @endif>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">名前</label>
                             <div class="col-md-6" >
