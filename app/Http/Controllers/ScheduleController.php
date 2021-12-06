@@ -39,7 +39,7 @@ class ScheduleController extends Controller
                 'schedulename' => 'required|string|max:255',
                 'location' => 'required|string|max:255',
                 'person' => 'required',
-                'date' => 'required|date',
+                'date' => 'required|date|after:yesterday',
                 'info' => 'nullable|string|max:10000'
             ],
             [
@@ -50,6 +50,7 @@ class ScheduleController extends Controller
                 'person.required'       => '担当者が入力されていません。',
                 'date.required'         => '開始日が入力されていません。',
                 'date.date'             => '開始日の形式が正しくありません。',
+                'date.after'            => '本日以降または本日の日付を選択してください。',
                 'info.max'              => '詳細の情報の長さは10000文字を超えることはできません。'
             ]);
             if ($validate->fails()) {
@@ -82,7 +83,7 @@ class ScheduleController extends Controller
             [
                 'schedulename' => 'required|string|max:255',
                 'location' => 'required|string|max:255',
-                'date' => 'required',
+                'date' => 'required|after:yesterday',
                 'info' => 'nullable|string|max:10000'
             ],
             [
@@ -91,6 +92,7 @@ class ScheduleController extends Controller
                 'location.required'     => '場所が入力されていません。',
                 'location.max'          => '場所のの長さは255文字を超えることはできません。',
                 'date.required'         => '開始日が入力されていません。',
+                'date.after'            => '本日以降または本日の日付を選択してください。',
                 'info.max'              => '詳細の情報の長さは10000文字を超えることはできません。'
             ]);
             if ($validate->fails()) {
