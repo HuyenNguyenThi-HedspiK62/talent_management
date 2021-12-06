@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             @error('gender')
-                            <span class="text-danger">性を入力して下さい</span>
+                            <span class="text-danger">性別を入力して下さい</span>
                             @enderror
                         </div>
 
@@ -110,7 +110,7 @@
                     </div>
                     <div class="button">
                         <a href="{{route('talent.index')}}" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
-                        <button type="submit" class="btn btn-success">編集</button>
+                        <button type="submit" class="btn btn-success">保存する</button>
                     </div>
                   </form>
             </div>

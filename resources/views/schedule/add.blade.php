@@ -103,7 +103,7 @@
                     </div>
                     <div class="button">
                         <a href="{{route('schedule.index', ['option' => 'all'])}}" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
-                        <button type="submit" class="btn btn-success">登記</button>
+                        <button type="submit" class="btn btn-success">保存する</button>
                     </div>
                   </form>
             </div>

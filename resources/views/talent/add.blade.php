@@ -67,6 +67,9 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="password" value="{{old('password')}}" name="password" class="form-control" id="exampleFormControlInput1" placeholder="パスワードを入力して下さい">
+                                @error('password')
+                                    <p class="text-danger">パスワードを入力して下さい</p>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -89,7 +92,7 @@
                                     <label class="form-check-label" for="inlineRadio2">他の性</label>
                                 </div>
                                 @error('gender')
-                                    <p class="text-danger">性を入力して下さい</p>
+                                    <p class="text-danger">性別を入力して下さい</p>
                                 @enderror
                             </div>
 
@@ -121,7 +124,7 @@
                     </div>
                     <div class="button">
                         <a href="{{route('talent.index')}}" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
-                        <button type="submit" class="btn btn-success">登記</button>
+                        <button type="submit" class="btn btn-success">保存する</button>
                     </div>
                   </form>
             </div>
