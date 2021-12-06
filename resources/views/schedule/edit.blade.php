@@ -39,7 +39,7 @@
                     <div class="col-md-8">
                       <input type="text" name="schedulename" value="{{ $schedule->schedule_name }}" class="form-control" placeholder="スケジュール名を入力して下さい" class="@error('schedulename') is-invalid @enderror">
                         @error('schedulename')
-                        <span class="text-danger">スケジュール名を入力して下さい</span>
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                   </div>
@@ -53,7 +53,7 @@
                     <div class="col-md-8">
                       <input type="date" name="date" value="{{ $schedule->date }}" class="form-control" id="exampleFormControlInput1" class="@error('date') is-invalid @enderror">
                         @error('date')
-                        <span class="text-danger">開始日を入力して下さい</span>
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                   </div>
@@ -67,7 +67,7 @@
                     <div class="col-md-8">
                       <input type="text" name="location" value="{{ $schedule->location }}" class="form-control" placeholder="場所を入力して下さい" class="@error('location') is-invalid @enderror">
                         @error('location')
-                        <span class="text-danger">場所を入力して下さい</span>
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                         @endforeach
                       </select>
                         @error('person')
-                        <span class="text-danger">担当者を入力して下さい</span>
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                   </div>
@@ -115,6 +115,9 @@
                     </div>
                     <div class="col-md-8">
                       <textarea class="form-control" name="info" value="{{ $schedule->information }}" rows="7">{{ $schedule->information }}</textarea>
+                        @error('info')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                   </div>
                 </div>

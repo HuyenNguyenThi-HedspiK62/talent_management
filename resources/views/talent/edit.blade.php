@@ -39,7 +39,7 @@
                             <div class="col-md-8">
                               <input type="text" name="tname" class="form-control" id="exampleFormControlInput1" placeholder="名前を入力して下さい" value="{{$talent->name}}" class="@error('tname') is-invalid @enderror">
                                 @error('tname')
-                                <span class="text-danger">名前を入力して下さい</span>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                             <div class="col-md-8">
                               <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい" value="{{ $talent->email }}" class="@error('email') is-invalid @enderror">
                                 @error('email')
-                                <span class="text-danger">メールアドレスをもう一度入力して下さい</span>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                 </div>
                             </div>
                             @error('gender')
-                            <span class="text-danger">性別を入力して下さい</span>
+                            <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
 
@@ -92,7 +92,7 @@
                             <div class="col-md-8">
                                 <input type="date" name="date" class="form-control" id="exampleFormControlInput1" placeholder="MM/DD/YYYY" value="{{ $talent->join_company_date }}" class="@error('date') is-invalid @enderror">
                                 @error('date')
-                                <span class="text-danger">会社入日を入力して下さい</span>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
@@ -105,6 +105,9 @@
                             </div>
                             <div class="col-md-8">
                             <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="7">{{$talent->information}}</textarea>
+                            @error('description')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                             </div>
                         </div>
                     </div>

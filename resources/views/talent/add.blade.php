@@ -40,7 +40,7 @@
                             <div class="col-md-8">
                                 <input type="text" name="tname" class="form-control" value="{{old('tname')}}" placeholder="名前を入力して下さい" class="@error('tname') is-invalid @enderror">
                                 @error('tname')
-                                <span class="text-danger">名前を入力して下さい</span>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                             <div class="col-md-8">
                                 <input type="email" name="email" class="form-control" value="{{old('email')}}" id="exampleFormControlInput1" placeholder="メールアドレスを入力して下さい" class="@error('email') is-invalid @enderror">
                                 @error('email')
-                                <span class="text-danger">すでに登録されているメールアドレスです。</span>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                             <div class="col-md-8">
                                 <input type="password" value="{{old('password')}}" name="password" class="form-control" id="exampleFormControlInput1" placeholder="パスワードを入力して下さい">
                                 @error('password')
-                                    <p class="text-danger">パスワードを入力して下さい</p>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                     <label class="form-check-label" for="inlineRadio2">他の性</label>
                                 </div>
                                 @error('gender')
-                                    <p class="text-danger">性別を入力して下さい</p>
+                                    <p class="text-danger">{{$message}}</p>
                                 @enderror
                             </div>
 
@@ -106,7 +106,7 @@
                             <div class="col-md-8">
                                 <input type="date" name="date" class="form-control" value="{{old('date')}}" id="exampleFormControlInput1" placeholder="MM/DD/YYYY" class="@error('date') is-invalid @enderror">
                                 @error('date')
-                                <span class="text-danger">会社入日を入力して下さい</span>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
@@ -119,6 +119,9 @@
                             </div>
                             <div class="col-md-8">
                             <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="7">{{old('description')}}</textarea>
+                                @error('description')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>

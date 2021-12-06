@@ -52,11 +52,27 @@ class TalentController extends Controller
         //
         $validate = Validator::make($request->all(),
             [
-                'tname' => 'required|string',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|min:8',
+                'tname' => 'required|string|max:50',
+                'email' => 'required|email:rfc,dns|regex:/^\S*$/u|unique:users|max:255',
+                'password' => 'required|between:8,20',
                 'gender' => 'required',
-                'date' => 'required|date'
+                'date' => 'required|date',
+                'description' => 'nullable|string|max:10000'
+            ],
+            [
+                'tname.required'    => '名前が入力されていません。',
+                'tname.max'         => '名前の長さは50文字を超えることはできません。',
+                'email.required'    => 'メールアドレスが入力されていません。',
+                'email.email'       => 'メールの形式が正しくありません。',
+                'email.regex'       => 'メールの形式が正しくありません。',
+                'email.unique'      => 'すでに登録されているメールアドレスです。',
+                'email.max'         => 'メールの長さは255文字を超えることはできません。',
+                'gender.required'   => '性別が入力されていません。',
+                'date.required'     => '会社入日が入力されていません。',
+                'date.date'         => '会社入日の形式が正しくありません。',
+                'password.required' => 'パスワードが入力されていません。',
+                'password.between'  => 'パスワードは、8文字から20文字にしてください。',
+                'description.max'   => '詳細の情報の長さは10000文字を超えることはできません。'
             ]);
             if ($validate->fails()) {
                 return redirect()->back()->withInput()->withErrors($validate);
@@ -122,9 +138,22 @@ class TalentController extends Controller
     {
         $validate = Validator::make($request->all(),
             [
-                'tname' => 'string',
-                'email' => 'email',
-                'date' => 'date'
+                'tname' => 'required|string|max:50',
+                'email' => 'required|email:rfc,dns|regex:/^\S*$/u|unique:users|max:255',
+                'date' => 'required|date',
+                'description' => 'nullable|string|max:10000'
+            ],
+            [
+                'tname.required'    => '名前が入力されていません。',
+                'tname.max'         => '名前の長さは50文字を超えることはできません。',
+                'email.required'    => 'メールアドレスが入力されていません。',
+                'email.email'       => 'メールの形式が正しくありません。',
+                'email.regex'       => 'メールの形式が正しくありません。',
+                'email.unique'      => 'すでに登録されているメールアドレスです。',
+                'email.max'         => 'メールの長さは255文字を超えることはできません。',
+                'date.required'     => '会社入日が入力されていません。',
+                'date.date'         => '会社入日の形式が正しくありません。',
+                'description.max'   => '詳細の情報の長さは10000文字を超えることはできません。'
             ]);
             if ($validate->fails()) {
                 return redirect()->back()->withInput()->withErrors($validate);

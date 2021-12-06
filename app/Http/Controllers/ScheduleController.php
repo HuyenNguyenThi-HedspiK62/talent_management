@@ -36,10 +36,21 @@ class ScheduleController extends Controller
     public function store(Request $request){
         $validate = Validator::make($request->all(),
             [
-                'schedulename' => 'required|string',
-                'location' => 'required|string',
+                'schedulename' => 'required|string|max:255',
+                'location' => 'required|string|max:255',
                 'person' => 'required',
-                'date' => 'required|date'
+                'date' => 'required|date',
+                'info' => 'nullable|string|max:10000'
+            ],
+            [
+                'schedulename.required' => 'スケジュール名が入力されていません。',
+                'schedulename.max'      => 'スケジュール名の長さは255文字を超えることはできません。',
+                'location.required'     => '場所が入力されていません。',
+                'location.max'          => '場所のの長さは255文字を超えることはできません。',
+                'person.required'       => '担当者が入力されていません。',
+                'date.required'         => '開始日が入力されていません。',
+                'date.date'             => '開始日の形式が正しくありません。',
+                'info.max'              => '詳細の情報の長さは10000文字を超えることはできません。'
             ]);
             if ($validate->fails()) {
                 return redirect()->back()->withInput()->withErrors($validate);
@@ -69,10 +80,18 @@ class ScheduleController extends Controller
     {
         $validate = Validator::make($request->all(),
             [
-                'schedulename' => 'string',
-                'location' => 'string',
-                'date' => 'date',
-                'status' => 'required'
+                'schedulename' => 'required|string|max:255',
+                'location' => 'required|string|max:255',
+                'date' => 'required',
+                'info' => 'nullable|string|max:10000'
+            ],
+            [
+                'schedulename.required' => 'スケジュール名が入力されていません。',
+                'schedulename.max'      => 'スケジュール名の長さは255文字を超えることはできません。',
+                'location.required'     => '場所が入力されていません。',
+                'location.max'          => '場所のの長さは255文字を超えることはできません。',
+                'date.required'         => '開始日が入力されていません。',
+                'info.max'              => '詳細の情報の長さは10000文字を超えることはできません。'
             ]);
             if ($validate->fails()) {
                 return redirect()->back()->withInput()->withErrors($validate);
