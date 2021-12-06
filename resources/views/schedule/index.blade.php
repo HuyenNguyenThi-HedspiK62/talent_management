@@ -59,8 +59,8 @@
                                         </td>
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
-                                            <a><i class="far fa-edit"></i></a>
-                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @elseif($user->pivot->status == 1 && $option == 'processing')
@@ -75,8 +75,8 @@
                                         </td>
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
-                                            <a><i class="far fa-edit"></i></a>
-                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @elseif($user->pivot->status == 2 && $option == 'done')
@@ -91,8 +91,8 @@
                                         </td>
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
-                                            <a><i class="far fa-edit"></i></a>
-                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @elseif($user->pivot->status == 3 && $option == 'interrupted')
@@ -107,8 +107,8 @@
                                         </td>
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
-                                            <a><i class="far fa-edit"></i></a>
-                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @elseif($option == 'all')
@@ -137,7 +137,7 @@
                                         <td>{{ $schedule->location }}</td>
                                         <td style="font-size:20px;">
                                             <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
-                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('このスケジュールを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @endif
