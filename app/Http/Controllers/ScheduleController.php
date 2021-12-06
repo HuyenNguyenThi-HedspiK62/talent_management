@@ -12,9 +12,9 @@ class ScheduleController extends Controller
 {
     public function index(Request $request){
         if($request->get('search') != null){
-            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->simplePaginate(10);
+            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->orderBy('created_at','desc')->paginate(10);
         }else {
-            $schedules = Schedule::with('users')->simplePaginate(10);
+            $schedules = Schedule::with('users')->orderBy('created_at','desc')->paginate(10);
         }
         return view('schedule.index', ['schedules' => $schedules]);
     }
@@ -51,14 +51,7 @@ class ScheduleController extends Controller
         $schedule->information = $request->info;
         $schedule->save();
         $schedule->users()->attach($request->get('person'));
-
-        if($request->get('search') != null){
-            $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->orderBy('id', 'desc')->simplePaginate(10);
-        }else {
-            $schedules = Schedule::with('users')->orderBy('id', 'desc')->simplePaginate(10);
-        }
-        $persons = DB::table('users')->get();
-        return view('schedule.index', compact('persons','schedules'));
+        return redirect()->route('schedule.index', ['option' => 'all']);
     }
 
     public function addSchedule(Request $request){

@@ -145,9 +145,9 @@
                         @endforeach
                         </tbody>
                     </table>
-{{--                    <span style="text-align: center;">--}}
-{{--                        {{ $schedules->links() }}--}}
-{{--                    </span>--}}
+                    <span class="d-flex justify-content-center">
+                        {{ $schedules->links('pagination::bootstrap-4') }}
+                    </span>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

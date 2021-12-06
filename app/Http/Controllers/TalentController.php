@@ -23,10 +23,10 @@ class TalentController extends Controller
                 $query->where('name', 'like', '%'. $request->get('search') .'%')
                       ->orWhere('email', 'LIKE', '%'. $request->get('search') .'%');
             })
-            ->simplePaginate(10);
+            ->paginate(10);
         }
         else {
-            $talents = User::where('role', 1)->orderBy('created_at','desc')->simplePaginate(10);
+            $talents = User::where('role', 1)->orderBy('created_at','desc')->paginate(10);
         }
         return view('talent.show')->with('talents', $talents);
     }
@@ -70,8 +70,7 @@ class TalentController extends Controller
                 $talent->join_company_date = $request->date;
                 $talent->information = $request->description;
                 $talent->save();
-                $talents = User::orderBy('created_at','desc')->simplePaginate(10);
-                return view('talent.show', compact('talents'));
+                return redirect()->route('talent.index');
             }
     }
 
