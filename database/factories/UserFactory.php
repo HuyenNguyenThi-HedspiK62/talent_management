@@ -18,7 +18,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'role' => rand(0, 1),
+            'role' => 1,
             'gender' => rand(1,2),
             'information' => $this->faker->text(),
             'join_company_date' => $this->faker->date(),

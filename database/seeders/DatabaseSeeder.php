@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\User::factory(100)->create();
         \App\Models\Schedule::factory(100)->create();
-        \App\Models\Task::factory(30)->create();
+        \App\Models\Task::factory(20)->create();
     }
 }
