@@ -139,7 +139,7 @@ class TalentController extends Controller
         $validate = Validator::make($request->all(),
             [
                 'tname' => 'required|string|max:50',
-                'email' => 'required|email:rfc,dns|regex:/^\S*$/u|unique:users|max:255',
+                'email' => 'required|email:rfc,dns|regex:/^\S*$/u|unique:users,email,'.$id.'|max:255',
                 'date' => 'required|date',
                 'description' => 'nullable|string|max:10000'
             ],
