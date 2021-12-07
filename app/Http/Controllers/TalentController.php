@@ -105,6 +105,9 @@ class TalentController extends Controller
     {
         $infos = explode(". ", $talent->information);
         $results = $talent->schedule;
+        $results = $results->sortBy(function($result){
+            return $result->pivot->status;
+        });
         return view('talent.profile', ['talent' => $talent, 'infos' => $infos, 'results' => $results]);
     }
 
