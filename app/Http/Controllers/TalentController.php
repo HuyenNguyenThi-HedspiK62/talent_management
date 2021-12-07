@@ -104,7 +104,7 @@ class TalentController extends Controller
     public function show(User $talent) //$id
     {
         $infos = explode(". ", $talent->information);
-        $results = $talent->schedule->orderBy('tasks.status', 'asc');
+        $results = $talent->schedule;
         return view('talent.profile', ['talent' => $talent, 'infos' => $infos, 'results' => $results]);
     }
 
