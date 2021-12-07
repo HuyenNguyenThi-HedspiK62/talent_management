@@ -10,11 +10,31 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 class ScheduleController extends Controller
 {
-    public function index(Request $request){
+    private $FILTER_OPTION;
+
+    public function __construct()
+    {
+        $this->FILTER_OPTION = [
+            'all'         => 4,
+            'not-started' => 0,
+            'processing'  => 1,
+            'done'        => 2,
+            'interrupted' => 3
+        ];
+    }
+
+    public function index(Request $request, $option){
         if($request->get('search') != null){
             $schedules = Schedule::where('schedule_name', 'like', '%'. $request->get('search') .'%')->with('users')->orderBy('created_at','desc')->paginate(10);
         }else {
-            $schedules = Schedule::with('users')->orderBy('created_at','desc')->paginate(10);
+            if($option == 'all'){
+                $schedules = Schedule::with('users')->paginate(10);
+                return view('schedule.index', ['schedules' => $schedules]);
+            }
+            $option = $this->FILTER_OPTION[$option];
+            $schedules = Schedule::whereHas('users', function ($query) use ($option) {
+                $query->where('status', $option);
+            })->with('users')->paginate(10);
         }
         return view('schedule.index', ['schedules' => $schedules]);
     }

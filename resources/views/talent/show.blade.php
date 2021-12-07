@@ -129,7 +129,6 @@ td, th {
                 <div class="col-12">
                     <table id="example2" class="table table-bordered table-hover text-center">
                         <thead style="background-color: #a0e4fc;">
-
                     <tr>
                         <th>名前</th>
                         <th>アドレス</th>
@@ -140,14 +139,13 @@ td, th {
                 <tbody>
                 @foreach ($talents as $talent)
                     <tr>
-                        <td>{{ $talent->name }}</td>
-                        <td>{{ $talent->email }}</td>
-                        <td>{{ $talent->join_company_date }}</td>
+                        <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->name }}</td>
+                        <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->email }}</td>
+                        <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->join_company_date }}</td>
                         <td>
                             <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a  href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" >&#xE872;</i></a>
                             <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}" class="show" title="Show" data-toggle="tooltip" ><i class="material-icons">remove_red_eye</i></a>
-
                         </td>
                     </tr>
                  @endforeach
@@ -158,7 +156,6 @@ td, th {
                     </span>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -166,6 +163,8 @@ td, th {
 
 @section('script')
     <script>
+        $('#expandable-table-header-row').ExpandableTable('toggleRow')
+
         function handleKeyPress(e){
             var key=e.keyCode || e.which;
             if (key==13){

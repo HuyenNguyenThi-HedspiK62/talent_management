@@ -198,7 +198,7 @@ table.table .form-control.error {
                         <th>時間</th>
                         <th>場所</th>
                         <th>ステータス</th>
-                        <th>詳細の情報</th>
+                        <th width="40%">詳細の情報</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -270,7 +270,9 @@ table.table .form-control.error {
                             @break
                         @endswitch
                         </td>
-                        <td>{{ $result->information }}</td>
+                        <td>
+                            {{$result->information}}
+                        </td>
                     </tr>
                     @endif
                 @endforeach
@@ -280,4 +282,7 @@ table.table .form-control.error {
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
 @endsection
