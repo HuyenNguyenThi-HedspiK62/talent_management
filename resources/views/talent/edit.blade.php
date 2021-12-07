@@ -113,7 +113,7 @@
                     </div>
                     <div class="button">
                         <a href="{{route('talent.index')}}" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
-                        <button type="submit" class="btn btn-success">保存する</button>
+                        <button type="submit" class="btn btn-success">保存</button>
                     </div>
                   </form>
             </div>
