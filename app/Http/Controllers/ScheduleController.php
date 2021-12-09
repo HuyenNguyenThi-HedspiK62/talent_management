@@ -26,10 +26,10 @@ class ScheduleController extends Controller
     public function index(Request $request, $option){
         if($request->get('search') != null){
             $schedules = Schedule::where(function($query) use ($request){
-                $query->where('schedule_name', 'like', '%'. $request->get('search') .'%')
-                ->orWhere('date', 'like', '%'. $request->get('search') .'%')
-                ->orWhere('location', 'like', '%'. $request->get('search') .'%')
-                ->orWhere('information', 'like', '%'. $request->get('search') .'%');
+                $query->where('schedule_name', 'ilike', '%'. $request->get('search') .'%')
+                ->orWhere('date', 'ilike', '%'. $request->get('search') .'%')
+                ->orWhere('location', 'ilike', '%'. $request->get('search') .'%')
+                ->orWhere('information', 'ilike', '%'. $request->get('search') .'%');
             })
             ->with('users')
             ->orderBy('created_at','desc')

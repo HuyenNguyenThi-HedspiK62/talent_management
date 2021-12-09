@@ -18,12 +18,11 @@ class TalentController extends Controller
     public function index(Request $request)
     {
         if($request->get('search') != null) {
-            $talents = User::where('role', 1)
+            $talents = User::where('role', 1)->orderBy('created_at','desc')
             ->where(function($query) use ($request){
-                $query->whereRaw('LOWER(`name`) like ?', ['%'.trim(strtolower($request->get('search')).'%')])
-                      ->orWhereRaw('LOWER(`email`) like ?', ['%'.trim(strtolower($request->get('search')).'%')]);
+                $query->where('name', 'ilike', '%'. $request->get('search') .'%')
+                      ->orWhere('email', 'ilike', '%'. $request->get('search') .'%');
             })
-            ->orderBy('created_at','desc')
             ->paginate(10);
         }
         else {
@@ -58,7 +57,7 @@ class TalentController extends Controller
                 'password' => 'required|between:8,20',
                 'gender' => 'required',
                 'role' => 'required',
-                'date' => 'required|date|before:tomorrow',
+                'date' => 'required|date',
                 'description' => 'nullable|string|max:10000'
             ],
             [
@@ -73,7 +72,6 @@ class TalentController extends Controller
                 'role.required'     => 'ロールが入力されていません。',
                 'date.required'     => '会社入日が入力されていません。',
                 'date.date'         => '会社入日の形式が正しくありません。',
-                'date.before'       => '本日以前または本日の日付を選択してください。',
                 'password.required' => 'パスワードが入力されていません。',
                 'password.between'  => 'パスワードは、8文字から20文字にしてください。',
                 'description.max'   => '詳細の情報の長さは10000文字を超えることはできません。'
