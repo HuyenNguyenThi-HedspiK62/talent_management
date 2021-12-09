@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('content-header')
 <div style="padding-bottom: 15px">
-    <a style="color: black" href="{{route('schedule.index', ['option' => 'all'])}}"><i class="fa fa-arrow-left" style="font-size:24px;"></i></a>
+    <a style="color: black" href="{{ url()->previous() }}"><i class="fa fa-arrow-left" style="font-size:24px;"></i></a>
 </div>
     スケジュール詳細
 @endsection
