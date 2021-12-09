@@ -133,6 +133,7 @@ table.table .form-control.error {
             </div>
             @endif
            <div class="card-body" @if(auth()->user()->role == 0) style="margin-top: -60px" @endif>
+            <a style="color: black" href="{{route('talent.index')}}"><i class="fa fa-arrow-left" style="font-size:24px;"></i></a>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">名前</label>
                             <div class="col-md-6" >
@@ -161,13 +162,15 @@ table.table .form-control.error {
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">詳細の情報</label>
                             <div class="col-md-6">
-                            <ul style="margin-left: -25px">
+                                <ul style="margin-left: -25px">
                                 @foreach ($infos as $info)
-                                    <li>{{ $info }}</li>
-                                @endforeach
-
-                            </ul>
-
+                                    @if (empty($info))
+                                    @else
+                                        <li>{{ $info }}</li>
+                                    @endif
+                                @endforeach  
+                                    
+                                </ul>
                             </div>
                         </div>
 

@@ -56,6 +56,7 @@ class TalentController extends Controller
                 'email' => 'required|email:rfc,dns|regex:/^\S*$/u|unique:users|max:255',
                 'password' => 'required|between:8,20',
                 'gender' => 'required',
+                'role' => 'required',
                 'date' => 'required|date|before:tomorrow',
                 'description' => 'nullable|string|max:10000'
             ],
@@ -68,6 +69,7 @@ class TalentController extends Controller
                 'email.unique'      => 'すでに登録されているメールアドレスです。',
                 'email.max'         => 'メールの長さは255文字を超えることはできません。',
                 'gender.required'   => '性別が入力されていません。',
+                'role.required'     => 'ロールが入力されていません。',
                 'date.required'     => '会社入日が入力されていません。',
                 'date.date'         => '会社入日の形式が正しくありません。',
                 'date.before'       => '本日以前または本日の日付を選択してください。',
@@ -83,7 +85,7 @@ class TalentController extends Controller
                 $talent->email = $request->email;
                 $talent->password = bcrypt($request->password);
                 $talent->gender = $request->input('gender');
-                $talent->role = '1';
+                $talent->role = $request->input('role');
                 $talent->join_company_date = $request->date;
                 $talent->information = $request->description;
                 $talent->save();

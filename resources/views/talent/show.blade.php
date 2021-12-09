@@ -127,6 +127,7 @@ td, th {
             </div>
             <div class="row">
                 <div class="col-12">
+               
                     <table id="example2" class="table table-bordered table-hover text-center">
                         <thead style="background-color: #a0e4fc;">
                     <tr>
