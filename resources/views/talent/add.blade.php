@@ -101,6 +101,27 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
+                                <label for="exampleFormControlInput1">ロール　(*)</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" @if(old('role') === "0") checked @endif type="radio" name="role" id="manager" value="0" class="@error('role') is-invalid @enderror">
+                                    <label class="form-check-label" for="inlineRadio1">管理者</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" @if(old('role') === "1") checked @endif type="radio" name="role" id="talent" value="1" class="@error('role') is-invalid @enderror">
+                                    <label class="form-check-label" for="inlineRadio2">タレント</label>
+                                </div>
+                                @error('role')
+                                    <p class="text-danger">{{$message}}</p>
+                                @enderror
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
                                 <label for="exampleFormControlSelect1">会社入日　(*)</label>
                             </div>
                             <div class="col-md-8">
