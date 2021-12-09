@@ -132,7 +132,8 @@ table.table .form-control.error {
                 <!-- <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
             </div>
             @endif
-           <div class="card-body" style="margin-top: -100px">
+           <div class="card-body" @if(auth()->user()->role == 0) style="margin-top: -60px" @endif>
+            <a style="color: black" href="{{route('talent.index')}}"><i class="fa fa-arrow-left" style="font-size:24px;"></i></a>
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">名前</label>
                             <div class="col-md-6" >
@@ -200,7 +201,7 @@ table.table .form-control.error {
                         <th>時間</th>
                         <th>場所</th>
                         <th>ステータス</th>
-                        <th>詳細の情報</th>
+                        <th width="40%">詳細の情報</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -272,7 +273,9 @@ table.table .form-control.error {
                             @break
                         @endswitch
                         </td>
-                        <td>{{ $result->information }}</td>
+                        <td>
+                            {{$result->information}}
+                        </td>
                     </tr>
                     @endif
                 @endforeach
@@ -282,4 +285,7 @@ table.table .form-control.error {
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
 @endsection

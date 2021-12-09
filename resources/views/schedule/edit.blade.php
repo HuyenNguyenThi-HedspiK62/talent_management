@@ -2,6 +2,16 @@
 @push('styles')
     <link href="{{ asset('asset/css/schedule.css') }}" rel="stylesheet">
 @endpush
+@section('style')
+    <link rel="stylesheet" href="{{asset('adminlte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminlte/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <style>
+        .select2-container--default .select2-selection--single {
+            height: 40px;
+        }
+    </style>
+@endsection
 @section('content-header')
     スケジュール編集
 @endsection
@@ -37,19 +47,27 @@
                       <label for="exampleFormControlInput1">スケジュール名 (*)</label>
                     </div>
                     <div class="col-md-8">
-                      <input type="text" name="schedulename" value="{{ $schedule->schedule_name }}" class="form-control" placeholder="スケジュール名を入力して下さい">
+                      <input type="text" name="schedulename" value="@if(!$errors->isEmpty()) {{old('schedulename')}} @else {{ $schedule->schedule_name }} @endif" class="form-control" placeholder="スケジュール名を入力して下さい" class="@error('schedulename') is-invalid @enderror">
+                        @error('schedulename')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                   </div>
+
                 </div>
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
-                      <label for="exampleFormControlInput1">開始日 (*)</label>
+                      <label>開始日 (*)</label>
                     </div>
                     <div class="col-md-8">
-                      <input type="date" name="date" value="{{ $schedule->date }}" class="form-control" id="exampleFormControlInput1">
+                      <input type="date" name="date" value="@if(!$errors->isEmpty()){{old('date')}}@else{{$schedule->date}}@endif" class="form-control">
+                        @error('date')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                   </div>
+
                 </div>
                 <div class="form-group">
                   <div class="row">
@@ -57,9 +75,13 @@
                       <label for="exampleFormControlInput1">場所 (*)</label>
                     </div>
                     <div class="col-md-8">
-                      <input type="text" name="location" value="{{ $schedule->location }}" class="form-control" placeholder="場所を入力して下さい">
+                      <input type="text" name="location" value="@if(!$errors->isEmpty()){{old('location')}}@else{{$schedule->location}}@endif" class="form-control" placeholder="場所を入力して下さい" class="@error('location') is-invalid @enderror">
+                        @error('location')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                   </div>
+
                 </div>
                 <div class="form-group">
                   <div class="row">
@@ -67,14 +89,17 @@
                       <label for="exampleFormControlSelect1">担当者 (*)</label>
                     </div>
                     <div class="col-md-8">
-                      <select class="form-control" name="person">
-                        <option value = "{{$schedule->users[0]->id}}">{{$schedule->users[0]->name}}</option>
+                        <select name="person" class="form-control select2" style="width: 100%;">
                         @foreach($persons as $person)
-                          <option value="{{$person->id}}">{{$person->name}}</option>
+                          <option @if(!$errors->isEmpty()) @if(old('person') == $person->id) selected @endif @elseif($schedule->users[0]->id == $person->id) selected @endif value="{{$person->id}}">{{$person->name}}</option>
                         @endforeach
                       </select>
+                        @error('person')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                   </div>
+
                 </div>
                 <div class="form-group">
                   <div class="row">
@@ -83,27 +108,14 @@
                     </div>
                     <div class="col-md-8">
                       <select class="form-control" name="status" id="exampleFormControlSelect2">
-                        @switch($schedule->users[0]->pivot->status)
-                        @case(0)
-                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>未着手</option>
-                        @break
-                        @case(1)
-                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>進行中</option>
-                        @break
-                        @case(2)
-                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>完了</option>
-                        @break
-                        @case(3)
-                        <option selected disabled value={{$schedule->users[0]->pivot->status}}>中断</option>
-                        @break
-                    @endswitch
-                        <option value="0">未着手</option>
-                        <option value="1">進行中</option>
-                        <option value="2">完了</option>
-                        <option value="3">中断</option>
+                        <option @if(!$errors->isEmpty()) @if(old('status') == 0) selected @endif @elseif($schedule->users[0]->pivot->status == 0) selected @endif value="0">未着手</option>
+                        <option @if(!$errors->isEmpty()) @if(old('status') == 1) selected @endif @elseif($schedule->users[0]->pivot->status == 1) selected @endif value="1">進行中</option>
+                        <option @if(!$errors->isEmpty()) @if(old('status') == 2) selected @endif @elseif($schedule->users[0]->pivot->status == 2) selected @endif value="2">完了</option>
+                        <option @if(!$errors->isEmpty()) @if(old('status') == 3) selected @endif @elseif($schedule->users[0]->pivot->status == 3) selected @endif value="3">中断</option>
                       </select>
                     </div>
                   </div>
+
                 </div>
                 <div class="form-group">
                   <div class="row">
@@ -111,16 +123,29 @@
                       <label for="exampleFormControlTextarea1">詳細の情報</label>
                     </div>
                     <div class="col-md-8">
-                      <textarea class="form-control" name="info" value="{{ $schedule->information }}" rows="7">{{ $schedule->information }}</textarea>
+                      <textarea class="form-control" name="info" rows="7">@if(!$errors->isEmpty()){{old('info')}}@else{{$schedule->information}}@endif</textarea>
+                        @error('info')
+                        <span class="text-danger">{{$message}}</span>
+                        @enderror
                     </div>
                   </div>
                 </div>
                 <div class="button">
                   <a href="{{route('schedule.index', ['option' => 'all'])}}" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
-                  <button type="submit" class="btn btn-success">編集</button>
+                  <button type="submit" class="btn btn-success">保存する</button>
                 </div>
               </form>
         </div>
     </div>
   </div>
+@endsection
+
+@section('script')
+    <script src="{{asset('adminlte/plugins/select2/js/select2.full.min.js')}}"></script>
+    <script type="text/javascript">
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        })
+    </script>
 @endsection
