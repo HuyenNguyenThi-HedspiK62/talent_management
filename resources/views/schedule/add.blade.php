@@ -89,6 +89,7 @@
                         </div>
                         <div class="col-md-8">
                             <select name="person" class="form-control select2" style="width: 100%;">
+                                <option selected disabled hidden></option>
                                 @foreach($persons as $person)
                                     <option @if(old('person') == $person->id) selected @endif value="{{$person->id}}">{{$person->name}}</option>
                                 @endforeach
@@ -115,7 +116,7 @@
                     </div>
                     <div class="button">
                         <a href="{{route('schedule.index', ['option' => 'all'])}}" class="btn btn-danger" style="margin-right: 30px;">キャンセル</a>
-                        <button type="submit" class="btn btn-success">保存する</button>
+                        <button type="submit" class="btn btn-success">保存</button>
                     </div>
                   </form>
             </div>

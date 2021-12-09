@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('content-header')
 <div style="padding-bottom: 15px">
-    <a style="color: black" href="{{route('schedule.index', ['option' => 'all'])}}"><i class="fa fa-arrow-left" style="font-size:24px;"></i></a>
+    <a style="color: black" href="{{ url()->previous() }}"><i class="fa fa-arrow-left" style="font-size:24px;"></i></a>
 </div>
     スケジュール詳細
 @endsection
@@ -65,9 +65,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label text-right">詳細の情報</label>
                             <div class="col-sm-10">
-                                <textarea disabled class="bg-white text-center form-control" rows="3">
-                                    {{$schedule->information}}
-                                </textarea>
+                                <textarea disabled class="bg-white text-center form-control" rows="3">{{$schedule->information}}</textarea>
                             </div>
                         </div>
                     </div>
