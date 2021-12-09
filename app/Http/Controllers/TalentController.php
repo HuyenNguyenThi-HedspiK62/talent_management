@@ -20,8 +20,8 @@ class TalentController extends Controller
         if($request->get('search') != null) {
             $talents = User::where('role', 1)
             ->where(function($query) use ($request){
-                $query->where('name', 'like', '%'. $request->get('search') .'%')
-                      ->orWhere('email', 'like', '%'. $request->get('search') .'%');
+                $query->whereRaw('LOWER(`name`) like ?', ['%'.trim(strtolower($request->get('search')).'%')])
+                      ->orWhereRaw('LOWER(`email`) like ?', ['%'.trim(strtolower($request->get('search')).'%')]);
             })
             ->orderBy('created_at','desc')
             ->paginate(10);
