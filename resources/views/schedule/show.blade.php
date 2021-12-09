@@ -65,9 +65,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label text-right">詳細の情報</label>
                             <div class="col-sm-10">
-                                <textarea disabled class="bg-white text-center form-control" rows="3">
-                                    {{$schedule->information}}
-                                </textarea>
+                                <textarea disabled class="bg-white text-center form-control" rows="3">{{$schedule->information}}</textarea>
                             </div>
                         </div>
                     </div>
