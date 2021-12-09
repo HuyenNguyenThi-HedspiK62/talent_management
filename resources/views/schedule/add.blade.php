@@ -89,6 +89,7 @@
                         </div>
                         <div class="col-md-8">
                             <select name="person" class="form-control select2" style="width: 100%;">
+                                <option selected disabled hidden></option>
                                 @foreach($persons as $person)
                                     <option @if(old('person') == $person->id) selected @endif value="{{$person->id}}">{{$person->name}}</option>
                                 @endforeach
