@@ -36,13 +36,16 @@ class ScheduleController extends Controller
             ->paginate(10);
         }else {
             if($option == 'all'){
-                $schedules = Schedule::with('users')->paginate(10);
+                $schedules = Schedule::with('users')->orderBy('created_at','desc')->paginate(10);
                 return view('schedule.index', ['schedules' => $schedules]);
             }
             $option = $this->FILTER_OPTION[$option];
             $schedules = Schedule::whereHas('users', function ($query) use ($option) {
                 $query->where('status', $option);
-            })->with('users')->paginate(10);
+            })
+            ->with('users')
+            ->orderBy('created_at','desc')
+            ->paginate(10);
         }
         return view('schedule.index', ['schedules' => $schedules]);
     }

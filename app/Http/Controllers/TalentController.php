@@ -18,11 +18,12 @@ class TalentController extends Controller
     public function index(Request $request)
     {
         if($request->get('search') != null) {
-            $talents = User::where('role', 1)->orderBy('created_at','desc')
+            $talents = User::where('role', 1)
             ->where(function($query) use ($request){
                 $query->where('name', 'like', '%'. $request->get('search') .'%')
                       ->orWhere('email', 'like', '%'. $request->get('search') .'%');
             })
+            ->orderBy('created_at','desc')
             ->paginate(10);
         }
         else {
