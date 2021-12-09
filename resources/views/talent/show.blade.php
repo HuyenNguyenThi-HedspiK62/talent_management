@@ -11,8 +11,7 @@ body {
 }
 .table-wrapper {
     width: 1000px;
-    margin: 0px auto;
-    background: #fff;
+    margin: 0px auto;   
     padding: 20px;
     /* box-shadow: 0 1px 1px rgba(0,0,0,.05); */
 }
@@ -144,14 +143,14 @@ td, th {
                         <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->email }}</td>
                         <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->join_company_date }}</td>
                         <td>
-                            <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a  href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" >&#xE872;</i></a>
-                            <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}" class="show" title="Show" data-toggle="tooltip" ><i class="material-icons">remove_red_eye</i></a>
+                            <a style="color: black;" href="{{ route('talent.edit', $talent->id) }}"><i class="far fa-edit"></i></a>
+                            <a href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
                  @endforeach
                         </tbody>
                     </table>
+                    @if(count($talents) === 0)<span class="d-block text-center p-3 font-weight-bold" style="margin-top: -16px; background-color: #e9ecef;color: red">データが見つかりません</span>@endif
                     <span class="d-flex justify-content-center">
                         {{ $talents->links('pagination::bootstrap-4') }}
                     </span>

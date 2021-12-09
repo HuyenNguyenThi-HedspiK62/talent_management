@@ -74,10 +74,10 @@
                                 </tr>
                             @endforeach
                         @endforeach
-                        @endif
+                        
                         </tbody>
                     </table>
-                    @if(count($schedules) === 0)<span class="d-block text-center p-3 font-weight-bold" style="margin-top: -16px; background-color: #e9ecef;">データが見つかりません</span>@endif
+                    @if(count($schedules) === 0)<span class="d-block text-center p-3 font-weight-bold" style="margin-top: -16px; background-color: #e9ecef;color: red">データが見つかりません</span>@endif
                     <span class="d-flex justify-content-center">
                         {{ $schedules->links('pagination::bootstrap-4') }}
                     </span>

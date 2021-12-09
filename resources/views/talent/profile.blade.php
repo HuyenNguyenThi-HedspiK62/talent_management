@@ -201,7 +201,7 @@ table.table .form-control.error {
                         <th>時間</th>
                         <th>場所</th>
                         <th>ステータス</th>
-                        <th width="40%">詳細の情報</th>
+                        <th style="width: 35%">詳細の情報</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -281,6 +281,7 @@ table.table .form-control.error {
                 @endforeach
                     </tbody>
                 </table>
+                @if(count($results) === 0)<span class="d-block text-center p-3 font-weight-bold" style="margin-top: -16px; background-color: #e9ecef;color: red">データが見つかりません</span>@endif
             </div>
         </div>
     </div>
