@@ -161,13 +161,15 @@ table.table .form-control.error {
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">詳細の情報</label>
                             <div class="col-md-6">
-                            <ul style="margin-left: -25px">
+                                <ul style="margin-left: -25px">
                                 @foreach ($infos as $info)
-                                    <li>{{ $info }}</li>
-                                @endforeach
-
-                            </ul>
-
+                                    @if (empty($info))
+                                    @else
+                                        <li>{{ $info }}</li>
+                                    @endif
+                                @endforeach  
+                                    
+                                </ul>
                             </div>
                         </div>
 

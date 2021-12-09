@@ -12,7 +12,7 @@ body {
 .table-wrapper {
     width: 1000px;
     margin: 0px auto;
-    background: #fff;
+    /* background: #fff; */
     padding: 20px;	
     /* box-shadow: 0 1px 1px rgba(0,0,0,.05); */
 }
@@ -127,6 +127,7 @@ td, th {
             </div>
             <div class="row">
                 <div class="col-12">
+               
                     <table id="example2" class="table table-bordered table-hover text-center">
                         <thead style="background-color: #a0e4fc;">
                 
@@ -138,19 +139,27 @@ td, th {
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($talents as $talent)
-                    <tr>
-                        <td>{{ $talent->name }}</td>
-                        <td>{{ $talent->email }}</td>
-                        <td>{{ $talent->join_company_date }}</td>
-                        <td>
-                            <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a  href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" >&#xE872;</i></a>
-                            <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}" class="show" title="Show" data-toggle="tooltip" ><i class="material-icons">remove_red_eye</i></a>
+                @if ($talents->isEmpty())
+                    <td colspan="4" style="color: red; text-align: center; font-weight: bold; padding: 50px"> 検索の結果がありません</td>
+                @else
+                    @foreach ($talents as $talent)
+                    
+                        <tr>
+                        
+                            <td>{{ $talent->name }}</td>
+                            <td>{{ $talent->email }}</td>
+                            <td>{{ $talent->join_company_date }}</td>
+                            <td>
+                                <a href="{{ route('talent.edit', $talent->id) }}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                <a  href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" >&#xE872;</i></a>
+                                <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}" class="show" title="Show" data-toggle="tooltip" ><i class="material-icons">remove_red_eye</i></a>
 
-                        </td>
-                    </tr>
-                 @endforeach      
+                            </td>
+                            
+                        </tr>
+                    
+                    @endforeach     
+                 @endif 
                         </tbody>
                     </table>
                     <span style="text-align: center;">

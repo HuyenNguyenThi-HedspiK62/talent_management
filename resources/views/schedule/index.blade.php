@@ -45,6 +45,9 @@
                         @php
                             $option = explode('/', Request::url())[4];
                         @endphp
+                        @if ($schedules->isEmpty())
+                            <td colspan="6" style="color: red; text-align: center; font-weight: bold; padding: 50px"> 検索の結果がありません</td>
+                        @else
                         @foreach($schedules as $schedule)
                             @foreach($schedule->users as $user)
                                 @if($user->pivot->status == 0 && $option == 'not-started')
@@ -143,6 +146,7 @@
                                 @endif
                             @endforeach
                         @endforeach
+                        @endif
                         </tbody>
                     </table>
                     <span style="text-align: center;">
