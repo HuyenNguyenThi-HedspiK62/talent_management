@@ -31,6 +31,22 @@ class TalentController extends Controller
         return view('talent.show')->with('talents', $talents);
     }
 
+    public function indexManager(Request $request)
+    {
+        if($request->get('search') != null) {
+            $managers = User::where('role', 0)->orderBy('created_at','desc')
+                ->where(function($query) use ($request){
+                    $query->where('name', 'ilike', '%'. $request->get('search') .'%')
+                        ->orWhere('email', 'ilike', '%'. $request->get('search') .'%');
+                })
+                ->paginate(10);
+        }
+        else {
+            $managers = User::where('role', 0)->orderBy('created_at','desc')->paginate(10);
+        }
+        return view('manager.index')->with('managers', $managers);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

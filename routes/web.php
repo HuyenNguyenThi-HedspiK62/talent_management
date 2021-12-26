@@ -25,12 +25,22 @@ Route::prefix('schedule')->name('schedule.')->group(function () {
     Route::get('/{scheduleId}/{userId}', [App\Http\Controllers\ScheduleController::class, 'show'])->name('show');
 });
 
+Route::prefix('course')->name('course.')->group(function () {
+    Route::get('/', function (){
+        return view('course.index');
+    })->name('index');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('talent')->name('talent.')->group(function () {
     Route::get('/delete/{talentId}', [App\Http\Controllers\TalentController::class, 'delete'])->name('delete');
     Route::get('/', [App\Http\Controllers\TalentController::class, 'index'])->name('index');
     Route::get('/{talent}/{option}', [App\Http\Controllers\TalentController::class, 'show'])->name('show');
+});
+
+Route::prefix('manager')->name('manager.')->group(function () {
+    Route::get('/', [App\Http\Controllers\TalentController::class, 'indexManager'])->name('index');
 });
 
 
