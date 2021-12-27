@@ -29,6 +29,7 @@ Route::prefix('course')->name('course.')->group(function () {
     Route::get('/', function (){
         return view('course.index');
     })->name('index');
+    Route::get('/show', [App\Http\Controllers\CourseController::class, 'show'])->name('show');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
