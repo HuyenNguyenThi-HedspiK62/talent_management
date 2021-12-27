@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="col-1 text-center">
-                    <a href="#"><i class="fas fa-plus-circle fa-2x"></i></a>
+                    <a href="{{ route('course.add') }}"><i class="fas fa-plus-circle fa-2x"></i></a>
                 </div>
             </div>
             <!-- /.row -->

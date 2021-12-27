@@ -44,6 +44,8 @@ Route::prefix('manager')->name('manager.')->group(function () {
     Route::get('/', [App\Http\Controllers\TalentController::class, 'indexManager'])->name('index');
 });
 
+Route::get('/add-course', [App\Http\Controllers\CourseController::class, 'addCourse'])->name('course.add');
+
 
 Route::get('/add-schedule', [App\Http\Controllers\ScheduleController::class, 'addSchedule'])->name('schedule.add');
 Route::post('/store-schedule/{option}', [App\Http\Controllers\ScheduleController::class, 'store'])->name('schedule.store');

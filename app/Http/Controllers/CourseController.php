@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 class CourseController extends Controller
 {
+    public function addCourse(Request $request){
+        $persons = DB::table('users')->where('role', 1)->get();
+        return view('course.add', compact('persons'));
+    }
     /**
      * Display a listing of the resource.
      *

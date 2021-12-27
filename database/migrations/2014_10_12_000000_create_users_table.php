@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->text('information')->nullable();
             $table->date('join_company_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('avatar')->default('/images/user.png');
             $table->rememberToken();
             $table->timestamps();
         });

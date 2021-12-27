@@ -135,6 +135,11 @@ table.table .form-control.error {
            <div class="card-body" @if(auth()->user()->role == 0) style="margin-top: -60px" @endif>
                @if(auth()->user()->role == 0)<a style="color: black" href="{{ url()->previous() }}"><i class="fa fa-arrow-left" style="font-size:24px;"></i></a>@endif
                         <div class="form-group row">
+                            <div class="col-md-6" >
+                            <img src="{{ asset($talent->avatar) }}" alt="" style="height: 60px ;width: 80px;border-radius: 20px; margin-left: 250px"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">名前</label>
                             <div class="col-md-6" >
                                     {{ $talent->name }}
