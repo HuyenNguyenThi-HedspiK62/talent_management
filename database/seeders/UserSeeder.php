@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'role' => 0,
             'gender' => 1,
             'information' => 'handsome and pretty',
-            'join_company_date' => date('Y-m-d g:i:s', strtotime('2021-11-13 10:21:02')),
+            'join_company_date' => date('Y-m-d g:i:s', strtotime('2021-11-13 10:21:01')),
         ]);
     }
 }
