@@ -33,7 +33,7 @@ class StoreCourseRequest extends FormRequest
             'end_time' => 'bail|required|after:start_time',
             'instructor' => 'required',
 //            'talents' => 'required',
-            'max_score' => 'required'
+            'max_score' => 'required|numeric|between:1,100'
         ];
     }
 

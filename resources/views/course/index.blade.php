@@ -47,8 +47,37 @@
                                     {{ $course->name }}
                                 </td>
                                 <td style='cursor: pointer;'>{{ $course->start_date }} - {{ $course->end_date }}</td>
-                                <td style='cursor: pointer;'>
-                                    <p class="badge p-2 badge-success">未着手</p>
+                                <td>
+                                    <ul class="navbar-nav d-inline">
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                <p class="badge p-2 badge-success d-inline">未着手</p>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item text-center" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();">
+                                                    <p class="badge p-2 badge-success">未着手</p>
+                                                </a>
+                                                <a class="dropdown-item text-center" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();">
+                                                    <p class="badge p-2 badge-warning">進行中</p>
+                                                </a>
+                                                <a class="dropdown-item text-center" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();">
+                                                    <p class="badge px-3 py-2 badge-info">完了</p>
+                                                </a>
+                                                <a class="dropdown-item text-center" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();">
+                                                    <p class="badge px-3 py-2 badge-danger">中断</p>
+                                                </a>
+
+                                                <form id="logout-form" action="#" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </td>
                                 <td style='cursor: pointer;'>{{ $course->instructor }}</td>
                                 <td style="font-size:20px;">
