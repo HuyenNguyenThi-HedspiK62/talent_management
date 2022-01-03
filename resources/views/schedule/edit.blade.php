@@ -66,12 +66,21 @@
                                   <span class="text-danger">{{$message}}</span>
                                   @enderror                                </div>
                             </div>
-                            <div class="col-sm-6 row">
-                                <label class="col-sm-5 col-form-label text-right">時間</label>
-                                <div class="col-sm-5" >
-                                <input value="{{old('date')}}" class="form-control" id="exampleFormControlInput1" class="@error('date') is-invalid @enderror">
+                            <div class="col-md-6 row bootstrap-timepicker">
+                                    <label class="col-sm-4 col-form-label text-right">時間</label>
+                                    <div class="col-sm-3">
+                                        <input value="{{old('start_time')}}" type="time" id="start_time" name="start_time" class="form-control time-picker"/>
+                                        @error('start_time')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input value="{{old('end_time')}}" type="time" name="end_time" class="form-control"/>
+                                        @error('end_time')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
                         </div>
 
                 <div class="form-group">
