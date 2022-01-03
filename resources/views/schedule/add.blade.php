@@ -55,19 +55,20 @@
                       </div>
 
                     </div>
-                    <div class="form-group">
-                      <div class="row">
-                        <div class="col-md-3">
-                          <label for="exampleFormControlInput1">開始日 (*)</label>
+                    <div class="form-group row">
+                            <div class="col-sm-6 row">
+                                <label class="col-sm-6 col-form-label text-right">開始日</label>
+                                <div class="col-sm-5" style="margin-left: 8px">
+                                <input value="{{old('date')}}" type="date" name="date" class="form-control" id="exampleFormControlInput1" class="@error('date') is-invalid @enderror">
+                                </div>
+                            </div>
+                            <div class="col-sm-6 row">
+                                <label class="col-sm-5 col-form-label text-right">時間</label>
+                                <div class="col-sm-5" >
+                                <input value="{{old('date')}}" class="form-control" id="exampleFormControlInput1" class="@error('date') is-invalid @enderror">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-8">
-                          <input value="{{old('date')}}" type="date" name="date" class="form-control" id="exampleFormControlInput1" class="@error('date') is-invalid @enderror">
-                            @error('date')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                      </div>
-                    </div>
                     <div class="form-group">
                       <div class="row">
                         <div class="col-md-3">
@@ -100,7 +101,23 @@
                         </div>
                       </div>
 
+                      
+
                     </div>
+
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <label for="exampleFormControlInput1">レビュアー</label>
+                        </div>
+                        <div class="col-md-8">
+                          <input value="{{old('schedulename')}}" type="text" name="schedulename" class="form-control" class="@error('schedulename') is-invalid @enderror">
+                            @error('schedulename')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                      </div>
+                      　  
                     <div class="form-group">
                       <div class="row">
                         <div class="col-md-3">
