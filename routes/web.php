@@ -26,11 +26,12 @@ Route::prefix('schedule')->name('schedule.')->group(function () {
 });
 
 Route::prefix('course')->name('course.')->group(function () {
-    Route::get('/', function (){
-        return view('course.index');
-    })->name('index');
+    Route::get('/', [App\Http\Controllers\CourseController::class, 'index'])->name('index');
+    Route::get('/create', [App\Http\Controllers\CourseController::class, 'create'])->name('add');
+    Route::post('/store', [App\Http\Controllers\CourseController::class, 'store'])->name('store');
     Route::get('/show', [App\Http\Controllers\CourseController::class, 'show'])->name('show');
-    Route::get('/edit', [App\Http\Controllers\CourseController::class, 'edit'])->name('edit');
+    Route::get('/edit/{id}', [App\Http\Controllers\CourseController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [App\Http\Controllers\CourseController::class, 'update'])->name('update');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -45,7 +46,6 @@ Route::prefix('manager')->name('manager.')->group(function () {
     Route::get('/', [App\Http\Controllers\TalentController::class, 'indexManager'])->name('index');
 });
 
-Route::get('/add-course', [App\Http\Controllers\CourseController::class, 'addCourse'])->name('course.add');
 
 
 Route::get('/add-schedule', [App\Http\Controllers\ScheduleController::class, 'addSchedule'])->name('schedule.add');

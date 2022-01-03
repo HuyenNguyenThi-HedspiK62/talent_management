@@ -24,6 +24,7 @@ class CreateCoursesTable extends Migration
             $table->string('location');
             $table->string('instructor');
             $table->unsignedInteger('max_score');
+            $table->unsignedTinyInteger('status')->nullable();
             $table->timestamps();
         });
     }

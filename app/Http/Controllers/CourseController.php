@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCourseRequest;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 class CourseController extends Controller
 {
-    public function addCourse(Request $request){
-        $persons = DB::table('users')->where('role', 1)->get();
-        return view('course.add', compact('persons'));
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +15,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::all();
+        return view('course.index', ['courses' => $courses]);
     }
 
     /**
@@ -29,7 +26,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $instructors = User::where('role', 0)->get();
+        $talents = User::where('role', 1)->get();
+        return view('course.add', ['instructors' => $instructors, 'talents' => $talents]);
     }
 
     /**
@@ -38,9 +37,12 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        //
+        $data = $request->only('name', 'detail', 'location', 'start_date', 'end_date', 'start_time',
+                    'end_time', 'max_score', 'instructor');
+        $course = Course::create($data);
+        $course->users()->attach($request->get('talents'));
     }
 
     /**
@@ -51,7 +53,6 @@ class CourseController extends Controller
      */
     public function show()
     {
-        //
         return view('course.show');
     }
 
@@ -61,10 +62,16 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        //
-        return view('course.edit');
+        $instructors = User::where('role', 0)->get();
+        $talents = User::where('role', 1)->get();
+        $course = Course::where('id', $id)->with('users')->first();
+        return view('course.edit', [
+            'instructors' => $instructors,
+            'talents' => $talents,
+            'course' => $course
+        ]);
     }
 
     /**
@@ -76,7 +83,11 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->only('name', 'detail', 'location', 'start_date', 'end_date', 'start_time',
+            'end_time', 'max_score', 'instructor');
+        Course::where('id', $id)->update($data);
+        $course = Course::where('id', $id)->first();
+        $course->users()->sync($request->get('talents'));
     }
 
     /**

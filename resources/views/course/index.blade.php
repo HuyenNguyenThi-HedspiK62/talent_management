@@ -41,62 +41,22 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($courses as $course)
                             <tr>
                                 <td  style='cursor: pointer;'>
-                                    123
+                                    {{ $course->name }}
                                 </td>
-                                <td style='cursor: pointer;'>123</td>
+                                <td style='cursor: pointer;'>{{ $course->start_date }} - {{ $course->end_date }}</td>
                                 <td style='cursor: pointer;'>
                                     <p class="badge p-2 badge-success">未着手</p>
                                 </td>
-                                <td style='cursor: pointer;'>123</td>
+                                <td style='cursor: pointer;'>{{ $course->instructor }}</td>
                                 <td style="font-size:20px;">
-                                    <a style="color: black;" href="#"><i class="far fa-edit"></i></a>
+                                    <a style="color: black;" href="{{ route('course.edit', ['id' => $course->id]) }}"><i class="far fa-edit"></i></a>
                                     <a href="#" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td  style='cursor: pointer;'>
-                                    123
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style='cursor: pointer;'>
-                                    <p class="badge p-2 badge-warning">進行中</p>
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style="font-size:20px;">
-                                    <a style="color: black;" href="#"><i class="far fa-edit"></i></a>
-                                    <a href="#" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td  style='cursor: pointer;'>
-                                    123
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style='cursor: pointer;'>
-                                    <p class="badge px-3 py-2 badge-info">完了</p>
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style="font-size:20px;">
-                                    <a style="color: black;" href="#"><i class="far fa-edit"></i></a>
-                                    <a href="#" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td  style='cursor: pointer;'>
-                                    123
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style='cursor: pointer;'>
-                                    <p class="badge px-3 py-2 badge-danger">中断</p>
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style="font-size:20px;">
-                                    <a style="color: black;" href="#"><i class="far fa-edit"></i></a>
-                                    <a href="#" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
