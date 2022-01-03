@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Schedule', 'tasks')->withPivot('status');
     }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
 }

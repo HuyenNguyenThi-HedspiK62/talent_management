@@ -41,62 +41,51 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($courses as $course)
                             <tr>
                                 <td  style='cursor: pointer;'>
-                                    123
+                                    {{ $course->name }}
                                 </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style='cursor: pointer;'>
-                                    <p class="badge p-2 badge-success">未着手</p>
+                                <td style='cursor: pointer;'>{{ $course->start_date }} - {{ $course->end_date }}</td>
+                                <td>
+                                    <ul class="navbar-nav d-inline">
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                <p class="badge p-2 badge-success d-inline">未着手</p>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item text-center" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();">
+                                                    <p class="badge p-2 badge-success">未着手</p>
+                                                </a>
+                                                <a class="dropdown-item text-center" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();">
+                                                    <p class="badge p-2 badge-warning">進行中</p>
+                                                </a>
+                                                <a class="dropdown-item text-center" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();">
+                                                    <p class="badge px-3 py-2 badge-info">完了</p>
+                                                </a>
+                                                <a class="dropdown-item text-center" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();">
+                                                    <p class="badge px-3 py-2 badge-danger">中断</p>
+                                                </a>
+
+                                                <form id="logout-form" action="#" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </td>
-                                <td style='cursor: pointer;'>123</td>
+                                <td style='cursor: pointer;'>{{ $course->instructor }}</td>
                                 <td style="font-size:20px;">
-                                    <a style="color: black;" href="#"><i class="far fa-edit"></i></a>
+                                    <a style="color: black;" href="{{ route('course.edit', ['id' => $course->id]) }}"><i class="far fa-edit"></i></a>
                                     <a href="#" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td  style='cursor: pointer;'>
-                                    123
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style='cursor: pointer;'>
-                                    <p class="badge p-2 badge-warning">進行中</p>
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style="font-size:20px;">
-                                    <a style="color: black;" href="#"><i class="far fa-edit"></i></a>
-                                    <a href="#" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td  style='cursor: pointer;'>
-                                    123
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style='cursor: pointer;'>
-                                    <p class="badge px-3 py-2 badge-info">完了</p>
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style="font-size:20px;">
-                                    <a style="color: black;" href="#"><i class="far fa-edit"></i></a>
-                                    <a href="#" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td  style='cursor: pointer;'>
-                                    123
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style='cursor: pointer;'>
-                                    <p class="badge px-3 py-2 badge-danger">中断</p>
-                                </td>
-                                <td style='cursor: pointer;'>123</td>
-                                <td style="font-size:20px;">
-                                    <a style="color: black;" href="#"><i class="far fa-edit"></i></a>
-                                    <a href="#" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
