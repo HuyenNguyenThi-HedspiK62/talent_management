@@ -72,7 +72,7 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link @if(str_contains(url()->current(), 'manager') || str_contains(url()->current(), 'talent')) active @endif">
+                        <a href="#" class="nav-link @if(str_contains(request()->path(), 'manager') || str_contains(request()->path(), 'talent')) active @endif">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 ユーザー
@@ -81,7 +81,7 @@
                         </a>
                         <ul class="nav nav-treeview ml-3">
                             <li class="nav-item">
-                                <a href="{{ route('manager.index') }}" class="nav-link @if(str_contains(url()->current(), 'manager')) active @endif">
+                                <a href="{{ route('manager.index') }}" class="nav-link @if(str_contains(request()->path(), 'manager')) active @endif">
                                     <i class="nav-icon fas fa-user"></i>
                                     <p>
                                         マネジャー一覧
@@ -89,7 +89,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('talent.index') }}" class="nav-link @if(str_contains(url()->current(), 'talent')) active @endif">
+                                <a href="{{ route('talent.index') }}" class="nav-link @if(str_contains(request()->path(), 'talent')) active @endif">
                                     <i class="nav-icon fas fa-user"></i>
                                     <p>
                                         タレント一覧
@@ -99,7 +99,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('schedule.index', ['option' => 'all']) }}" class="nav-link @if(str_contains(url()->current(), 'schedule')) active @endif">
+                        <a href="{{ route('schedule.index', ['option' => 'all']) }}" class="nav-link @if(str_contains(request()->path(), 'schedule')) active @endif">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 スケジュール一覧
@@ -107,7 +107,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('course.index', ['option' => 'all'])}}" class="nav-link @if(str_contains(url()->current(), 'course')) active @endif">
+                        <a href="{{ route('course.index', ['option' => 'all'])}}" class="nav-link @if(str_contains(request()->path(), 'course')) active @endif">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 コース一覧
