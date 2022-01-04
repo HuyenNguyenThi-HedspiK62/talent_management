@@ -11,7 +11,7 @@ body {
 }
 .table-wrapper {
     width: 1000px;
-    margin: 0px auto;   
+    margin: 0px auto;
     padding: 20px;
     /* box-shadow: 0 1px 1px rgba(0,0,0,.05); */
 }
@@ -106,9 +106,6 @@ td, th {
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
-                <!-- <div>
-                    <div class="col-sm-8"><h2>タレント一覧</b></h2></div>
-                </div> -->
                 <div class="row">
                 <div class="col-3 offset-8">
                     <div class="input-group mb-3">
@@ -126,29 +123,28 @@ td, th {
             </div>
             <div class="row">
                 <div class="col-12">
-
                     <table id="example2" class="table table-bordered table-hover text-center">
                         <thead style="background-color: #a0e4fc;">
-                    <tr>
-                        <th>名前</th>
-                        <th>アドレス</th>
-                        <th>会社入日</th>
-                        <th>アクション</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach ($talents as $talent)
-                    <tr>
-                        <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->name }}</td>
-                        <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->email }}</td>
-                        <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->join_company_date }}</td>
-                        <td style="font-size:20px;">
-                            <a style="color: black;" href="{{ route('talent.edit', $talent->id) }}"><i class="far fa-edit"></i></a>
-                            <a href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                        <tr>
+                            <th>名前</th>
+                            <th>アドレス</th>
+                            <th>会社入日</th>
+                            <th>アクション</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($talents as $talent)
+                            <tr>
+                                <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->name }}</td>
+                                <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->email }}</td>
+                                <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->join_company_date }}</td>
+                                <td style="font-size:20px;">
+                                    <a style="color: black;" href="{{ route('talent.edit', $talent->id) }}"><i class="far fa-edit"></i></a>
+                                    <a href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
 
-                        </td>
-                    </tr>
-                 @endforeach
+                                </td>
+                            </tr>
+                         @endforeach
                         </tbody>
                     </table>
                     @if(count($talents) === 0)<span class="d-block text-center p-3 font-weight-bold" style="margin-top: -16px; background-color: #e9ecef;">データが見つかりません</span>@endif
@@ -167,8 +163,8 @@ td, th {
         $('#expandable-table-header-row').ExpandableTable('toggleRow')
 
         function handleKeyPress(e){
-            var key=e.keyCode || e.which;
-            if (key==13){
+            let key=e.keyCode || e.which;
+            if (key === 13){
                 search();
             }
         }

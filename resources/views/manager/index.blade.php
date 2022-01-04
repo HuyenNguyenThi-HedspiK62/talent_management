@@ -110,17 +110,18 @@ td, th {
                     <div class="col-sm-8"><h2>タレント一覧</b></h2></div>
                 </div> -->
                 <div class="row">
-                <div class="col-3 offset-9">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span onclick="search()" class="input-group-text"><i class="fas fa-search"></i></span>
+                    <div class="col-3 offset-8">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span onclick="search()" class="input-group-text"><i class="fas fa-search"></i></span>
+                            </div>
+                            <input onkeypress="handleKeyPress(event)" id="text_search" type="text" class="form-control text-center" placeholder="検索">
                         </div>
-                        <input onkeypress="handleKeyPress(event)" id="text_search" type="text" class="form-control text-center" placeholder="検索">
+                    </div>
+                    <div class="col-1 text-center">
+                        <a href="{{ route('talent.add') }}"><i class="fas fa-plus-circle fa-2x"></i></a>
                     </div>
                 </div>
-            </div>
-
-            </div>
             <div class="row">
                 <div class="col-12">
 
