@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('content-header')
-    タレント一覧
+    マネジャー
 @endsection
 @section('content')
 
@@ -136,9 +136,9 @@ td, th {
                 <tbody>
                 @foreach ($managers as $manager)
                     <tr>
-                        <td style='cursor: pointer;'>{{ $manager->name }}</td>
-                        <td style='cursor: pointer;'>{{ $manager->email }}</td>
-                        <td style='cursor: pointer;'>{{ $manager->join_company_date }}</td>
+                        <td>{{ $manager->name }}</td>
+                        <td>{{ $manager->email }}</td>
+                        <td>{{ $manager->join_company_date }}</td>
                     </tr>
                  @endforeach
                         </tbody>
@@ -156,8 +156,6 @@ td, th {
 
 @section('script')
     <script>
-        // $('#expandable-table-header-row').ExpandableTable('toggleRow')
-
         function handleKeyPress(e){
             var key=e.keyCode || e.which;
             if (key==13){

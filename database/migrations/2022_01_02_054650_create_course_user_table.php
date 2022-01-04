@@ -17,7 +17,7 @@ class CreateCourseUserTable extends Migration
             $table->id();
             $table->integer('user_id')->unsigned();
             $table->integer('course_id')->unsigned();
-            $table->unsignedInteger('score')->nullable();
+            $table->unsignedInteger('score');
             $table->text('comment')->nullable();
             $table->timestamps();
         });

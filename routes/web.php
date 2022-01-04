@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm']);
 
 Auth::routes();
 
@@ -26,12 +24,15 @@ Route::prefix('schedule')->name('schedule.')->group(function () {
 });
 
 Route::prefix('course')->name('course.')->group(function () {
-    Route::get('/', [App\Http\Controllers\CourseController::class, 'index'])->name('index');
-    Route::get('/create', [App\Http\Controllers\CourseController::class, 'create'])->name('add');
+    Route::get('/{option}', [App\Http\Controllers\CourseController::class, 'index'])->name('index');
     Route::post('/store', [App\Http\Controllers\CourseController::class, 'store'])->name('store');
     Route::get('/show', [App\Http\Controllers\CourseController::class, 'show'])->name('show');
     Route::get('/edit/{id}', [App\Http\Controllers\CourseController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [App\Http\Controllers\CourseController::class, 'update'])->name('update');
+    Route::post('/update-status/', [App\Http\Controllers\CourseController::class, 'updateStatus'])->name('update_status');
+    Route::get('/detail/{id}', [App\Http\Controllers\CourseController::class, 'show'])->name('show');
+    Route::post('/update-score/{id}', [App\Http\Controllers\CourseController::class, 'updateScore'])->name('update_score');
+    Route::get('/delete/{id}', [App\Http\Controllers\CourseController::class, 'delete'])->name('delete');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -56,3 +57,4 @@ Route::post('/store-talent', [App\Http\Controllers\TalentController::class, 'sto
 Route::get('/add-talent', [App\Http\Controllers\TalentController::class, 'addTalent'])->name('talent.add');
 Route::get('/{id}/edit-talent', [App\Http\Controllers\TalentController::class, 'editTalent'])->name('talent.edit');
 Route::post('/{id}/update-talent/{option}', [App\Http\Controllers\TalentController::class, 'update'])->name('talent.update');
+Route::get('/create-course', [App\Http\Controllers\CourseController::class, 'create'])->name('course.create');

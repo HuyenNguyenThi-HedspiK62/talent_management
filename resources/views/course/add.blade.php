@@ -105,8 +105,8 @@
                                 <select name="instructor" class="form-control select2" style="width: 100%;">
                                     <option selected disabled hidden></option>
                                     @foreach($instructors as $instructor)
-                                        <option @if(old('instructor') == $instructor->id) selected
-                                                @endif value="{{$instructor->id}}">{{$instructor->name}}</option>
+                                        <option @if(old('instructor') == $instructor->name) selected
+                                                @endif value="{{$instructor->name}}">{{$instructor->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('instructor')

@@ -55,7 +55,23 @@
             <div class="row">
                 <div class="col-6">
                     <h4 class="mt-1 mr-3 d-inline">コース名</h4>
-                    <p class="badge p-2 badge-success">未着手</p>
+                    @switch($course->status)
+                        @case(0)
+                        <p class="badge p-2 badge-success">未着手</p>
+                        @break
+                        @case(1)
+                        <p class="badge p-2 badge-warning">進行中</p>
+                        @break
+                        @case(2)
+                        <p class="badge px-3 py-2 badge-info">完了</p>
+                        @break
+                        @case(3)
+                        <p class="badge px-3 py-2 badge-danger">中断</p>
+                        @break
+                        @default
+                        <p class="badge p-2 badge-success">未着手</p>
+                        @break
+                    @endswitch
                 </div>
             </div>
             <!-- /.row -->
@@ -136,9 +152,9 @@
                                 <select name="instructor" class="form-control select2" style="width: 100%;">
                                     <option selected disabled hidden></option>
                                     @foreach($instructors as $instructor)
-                                        <option @if(old('instructor') == $instructor->id) selected
-                                                @elseif($course->instructor == $instructor->id) selected
-                                                @endif value="{{$instructor->id}}">{{$instructor->name}}</option>
+                                        <option @if(old('instructor') == $instructor->name) selected
+                                                @elseif($course->instructor == $instructor->name) selected
+                                                @endif value="{{$instructor->name}}">{{$instructor->name}}</option>
                                     @endforeach
                                 </select>
                                 @error('instructor')
