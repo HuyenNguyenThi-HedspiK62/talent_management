@@ -55,20 +55,34 @@
                   </div>
 
                 </div>
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <label>開始日 (*)</label>
-                    </div>
-                    <div class="col-md-8">
-                      <input type="date" name="date" value="@if(!$errors->isEmpty()){{old('date')}}@else{{$schedule->date}}@endif" class="form-control">
-                        @error('date')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                  </div>
+                
 
-                </div>
+                <div class="form-group row">
+                            <div class="col-sm-6 row">
+                                <label class="col-sm-6 col-form-label text-right">開始日</label>
+                                <div class="col-sm-5" style="margin-left: 8px">
+                                <input type="date" name="date" value="@if(!$errors->isEmpty()){{old('date')}}@else{{$schedule->date}}@endif" class="form-control">
+                                  @error('date')
+                                  <span class="text-danger">{{$message}}</span>
+                                  @enderror                                </div>
+                            </div>
+                            <div class="col-md-6 row bootstrap-timepicker">
+                                    <label class="col-sm-4 col-form-label text-right">時間</label>
+                                    <div class="col-sm-3">
+                                        <input value="{{old('start_time')}}" type="time" id="start_time" name="start_time" class="form-control time-picker"/>
+                                        @error('start_time')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input value="{{old('end_time')}}" type="time" name="end_time" class="form-control"/>
+                                        @error('end_time')
+                                        <span class="text-danger">{{$message}}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                        </div>
+
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
@@ -101,6 +115,21 @@
                   </div>
 
                 </div>
+
+                <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <label for="exampleFormControlInput1">レビュアー</label>
+                        </div>
+                        <div class="col-md-8">
+                          <input value="{{old('schedulename')}}" type="text" name="schedulename" class="form-control" class="@error('schedulename') is-invalid @enderror">
+                            @error('schedulename')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                      </div>
+                </div>
+
                 <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
