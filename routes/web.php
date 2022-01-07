@@ -60,3 +60,6 @@ Route::get('/add-talent', [App\Http\Controllers\TalentController::class, 'addTal
 Route::get('/{id}/edit-talent', [App\Http\Controllers\TalentController::class, 'editTalent'])->name('talent.edit');
 Route::post('/{id}/update-talent/{option}', [App\Http\Controllers\TalentController::class, 'update'])->name('talent.update');
 Route::get('/create-course', [App\Http\Controllers\CourseController::class, 'create'])->name('course.create');
+
+
+Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendar.index');

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" style="height: auto; margin-left: -10px">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" @if(auth()->user()->role == 1) style="margin-left: -250px" @endif>
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
         <!-- Left navbar links -->
         @if(auth()->user()->role == 0)
         <ul class="navbar-nav">
