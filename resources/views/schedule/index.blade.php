@@ -36,7 +36,7 @@
                         <thead style="background-color: #a0e4fc;">
                         <tr>
                             <th>スケジュール名</th>
-                            <th>担当者</th>
+                            <th>タレント</th>
                             <th>開始日</th>
                             <th width="8%">ステータス</th>
                             <th width="35%">場所</th>

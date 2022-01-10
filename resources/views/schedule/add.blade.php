@@ -113,7 +113,7 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col-md-3">
-                          <label for="exampleFormControlSelect1">担当者 (*)</label>
+                          <label for="exampleFormControlSelect1">タレント (*)</label>
                         </div>
                         <div class="col-md-8">
                             <select class="select2" multiple="multiple" name="talents[]" data-placeholder="Select a talent" style="width: 100%;">
