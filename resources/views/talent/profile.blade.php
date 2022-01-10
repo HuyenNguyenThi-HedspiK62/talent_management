@@ -326,72 +326,95 @@ table.table .form-control.error {
                 @php
                     $option = explode('/', Request::url())[5];
                 @endphp
-                @foreach ($results as $result)
-                    @if($result->pivot->status == 0 && $option == 'not-started')
+                @foreach ($kosus as $kosu)
+                    @if($kosu->pivot->status == 0 && $option == 'not-started')
                         <tr>
-                            <td>aaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            
+                            <td>{{$kosu->name}}</td>
+                            <td>{{ $kosu->start_date }}</td>
+                            <td>{{ $kosu->end_date }}</td>
+                            <td>{{ $kosu->start_time}} - {{ $kosu->end_time}}</td>
+                            <td>{{ $kosu->location }} </td>
                             <td>
                                 <p class="badge p-2 badge-success">未着手</p>
                             </td>
-                            <td>dddd</td>
-                            <td>aaaa</td>
+                            @foreach($kosu->users as $talent)
+                                       
+                            @if($talent->pivot->user_id === $id)         
+                            <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
+                            <td>{{$talent->pivot->comment}}</td>
+                            @endif
+                                          
+                         @endforeach
                         </tr>
-                    @elseif($result->pivot->status == 1 && $option == 'processing')
+                    @elseif($kosu->pivot->status == 1 && $option == 'processing')
 
                     <tr>
-                    <td>aaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
+                            <td>{{$kosu->name}}</td>
+                            <td>{{ $kosu->start_date }}</td>
+                            <td>{{ $kosu->end_date }}</td>
+                            <td>{{ $kosu->start_time}} - {{ $kosu->end_time}}</td>
+                            <td>{{ $kosu->location }} </td>
                         <td>
                             <p class="badge p-2 badge-warning">進行中</p>
                         </td>
-                        <td>ddd</td>
-                        <td>aaaa</td>
+                        @foreach($kosu->users as $talent)
+                                       
+                        @if($talent->pivot->user_id === $id)         
+                            <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
+                            <td>{{$talent->pivot->comment}}</td>
+                            @endif
+                                          
+                         @endforeach
                     </tr>
-                    @elseif($result->pivot->status == 2 && $option == 'done')
+                    @elseif($kosu->pivot->status == 2 && $option == 'done')
 
                         <tr>
-                        <td>aaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
+                            <td>{{$kosu->name}}</td>
+                            <td>{{ $kosu->start_date }}</td>
+                            <td>{{ $kosu->end_date }}</td>
+                            <td>{{ $kosu->start_time}} - {{ $kosu->end_time}}</td>
+                            <td>{{ $kosu->location }} </td>
                             <td>
                             <p class="badge px-3 py-2 badge-info">完了</p>
                             </td>
-                            <td>sss</td>
-                            <td>aaaa</td>
+                            @foreach($kosu->users as $talent)
+                                       
+                            @if($talent->pivot->user_id === $id)         
+                            <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
+                            <td>{{$talent->pivot->comment}}</td>
+                            @endif
+                                          
+                         @endforeach
                         </tr>
-                    @elseif($result->pivot->status == 3 && $option == 'interrupted')
+                    @elseif($kosu->pivot->status == 3 && $option == 'interrupted')
 
                     <tr>
-                    <td>aaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
+                        <td>{{$kosu->name}}</td>
+                            <td>{{ $kosu->start_date }}</td>
+                            <td>{{ $kosu->end_date }}</td>
+                            <td>{{ $kosu->start_time}} - {{ $kosu->end_time}}</td>
+                            <td>{{ $kosu->location }} </td>
                         <td>
                         <p class="badge px-3 py-2 badge-danger">中断</p>
                         </td>
-                        <td>dddd</td>
-                        <td>aaaa</td>
+                        @foreach($kosu->users as $talent)
+                                       
+                        @if($talent->pivot->user_id === $id)         
+                            <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
+                            <td>{{$talent->pivot->comment}}</td>
+                            @endif
+                                          
+                         @endforeach
                     </tr>
                     @elseif($option == 'all')
                     <tr>
-                    <td>aaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
-                            <td>aaaa</td>
+                        <td>{{$kosu->name}}</td>
+                            <td>{{ $kosu->start_date }}</td>
+                            <td>{{ $kosu->end_date }}</td>
+                            <td>{{ $kosu->start_time}} - {{ $kosu->end_time}}</td>
+                            <td>{{ $kosu->location }} </td>
                         <td>
-                        @switch($result->pivot->status)
+                        @switch($kosu->pivot->status)
                             @case(0)
                             <p class="badge p-2 badge-success">未着手</p>
                             @break
@@ -406,16 +429,20 @@ table.table .form-control.error {
                             @break
                         @endswitch
                         </td>
-                        <td>
-                            ddd
-                        </td>
-                        <td>aaaa</td>
+                        @foreach($kosu->users as $talent)
+                            @if($talent->pivot->user_id === $id)         
+                            <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
+                            <td>{{$talent->pivot->comment}}</td>
+                            @endif
+                                          
+                         @endforeach
+                        
                     </tr>
                     @endif
                 @endforeach
                     </tbody>
                 </table>
-                @if(count($results) === 0)<span class="d-block text-center p-3 font-weight-bold" style="margin-top: -16px; background-color: #e9ecef;color: red">データが見つかりません</span>@endif
+                @if(count($kosus) === 0)<span class="d-block text-center p-3 font-weight-bold" style="margin-top: -16px; background-color: #e9ecef;color: red">データが見つかりません</span>@endif
                 </div>
             @endif
 
