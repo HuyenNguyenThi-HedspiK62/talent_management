@@ -97,7 +97,7 @@
                   </div>
 
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <div class="row">
                     <div class="col-md-3">
                       <label for="exampleFormControlSelect1">担当者 (*)</label>
@@ -114,8 +114,24 @@
                     </div>
                   </div>
 
-                </div>
-
+                </div> -->
+                <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <label for="exampleFormControlSelect1">担当者 (*)</label>
+                        </div>
+                        <div class="col-md-8">
+                          <select onchange="countSelected()" class="select2" multiple="multiple" name="person[]" data-placeholder="Select a talent" style="width: 100%;">
+                            @foreach($persons as $person)
+                            <option @if(!$errors->isEmpty()) @if(old('person') == $person->id) selected @endif @elseif($schedule->users[0]->id == $person->id) selected @endif value="{{$person->id}}">{{$person->name}}</option>
+                            @endforeach
+                          </select>
+                            @error('person')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                      </div>
+                  </div>
                 <div class="form-group">
                       <div class="row">
                         <div class="col-md-3">
