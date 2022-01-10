@@ -122,6 +122,9 @@ table.table .form-control.error {
     margin-left: 40px
 }
 </style>
+@php
+    $choose = explode('/', Request::url())[6];
+@endphp
 <div class="container-lg">
     <div class="table-responsive">
     <div class="table-wrapper">
@@ -183,17 +186,18 @@ table.table .form-control.error {
 
 
             <div class="table-title">
-
-                <div class="table-text"><h2>自分のタスク</b></h2></div>
+                <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu'])}}" class="table-text"><p class="badge p-2 badge" style="font-size: 18px; background-color: @if(str_contains(request()->path(), 'sukejyu')) blue @else gray @endif "　>スケジュール</p></a>
+                <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all','choose' => 'kosu'])}}" class="table-text"><p class="badge p-2 badge" style="font-size: 18px; background-color: @if(str_contains(request()->path(), 'kosu')) blue @else gray @endif ">コース</p></a>
             </div>
+            @if($choose == 'sukejyu')
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-6 mb-4">
-                        <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all'])}}" class="btn btn-default">全て</a>
-                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'not-started'] )}}" class="btn text-white btn-success ml-2">未着手</a>
-                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'processing'])}}" class="btn btn-warning ml-2">進行中</a>
-                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'done'])}}" class="btn text-white btn-info ml-2">完了</a>
-                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'interrupted'])}}" class="btn text-white btn-danger ml-2">中断</a>
+                        <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu'])}}" class="btn btn-default">全て</a>
+                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'not-started', 'choose' => 'sukejyu'] )}}" class="btn text-white btn-success ml-2">未着手</a>
+                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'processing', 'choose' => 'sukejyu'])}}" class="btn btn-warning ml-2">進行中</a>
+                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'done', 'choose' => 'sukejyu'])}}" class="btn text-white btn-info ml-2">完了</a>
+                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'interrupted', 'choose' => 'sukejyu'])}}" class="btn text-white btn-danger ml-2">中断</a>
                     </div>
                 </div>
             </div>
@@ -288,6 +292,135 @@ table.table .form-control.error {
                 </table>
                 @if(count($results) === 0)<span class="d-block text-center p-3 font-weight-bold" style="margin-top: -16px; background-color: #e9ecef;color: red">データが見つかりません</span>@endif
             </div>
+
+
+
+            @elseif($choose == 'kosu')
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6 mb-4">
+                        <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'kosu'])}}" class="btn btn-default">全て</a>
+                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'not-started', 'choose' => 'kosu'] )}}" class="btn text-white btn-success ml-2">未着手</a>
+                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'processing', 'choose' => 'kosu'])}}" class="btn btn-warning ml-2">進行中</a>
+                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'done', 'choose' => 'kosu'])}}" class="btn text-white btn-info ml-2">完了</a>
+                        <a href="{{route('talent.show', ['talent' => $talent->id,'option' => 'interrupted', 'choose' => 'kosu'])}}" class="btn text-white btn-danger ml-2">中断</a>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-12">
+                    <table id="example2" class="table table-bordered table-hover text-center">
+                        <thead style="background-color: #a0e4fc;">
+                    <tr>
+                        <th>コース名</th>
+                        <th>開始日</th>
+                        <th>終了日</th>
+                        <th>時間</th>
+                        <th>場所</th>
+                        <th>ステータス</th>
+                        <th>成績</th>
+                        <th style="width: 35%">コメント</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @php
+                    $option = explode('/', Request::url())[5];
+                @endphp
+                @foreach ($results as $result)
+                    @if($result->pivot->status == 0 && $option == 'not-started')
+                        <tr>
+                            <td>aaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            
+                            <td>
+                                <p class="badge p-2 badge-success">未着手</p>
+                            </td>
+                            <td>dddd</td>
+                            <td>aaaa</td>
+                        </tr>
+                    @elseif($result->pivot->status == 1 && $option == 'processing')
+
+                    <tr>
+                    <td>aaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                        <td>
+                            <p class="badge p-2 badge-warning">進行中</p>
+                        </td>
+                        <td>ddd</td>
+                        <td>aaaa</td>
+                    </tr>
+                    @elseif($result->pivot->status == 2 && $option == 'done')
+
+                        <tr>
+                        <td>aaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>
+                            <p class="badge px-3 py-2 badge-info">完了</p>
+                            </td>
+                            <td>sss</td>
+                            <td>aaaa</td>
+                        </tr>
+                    @elseif($result->pivot->status == 3 && $option == 'interrupted')
+
+                    <tr>
+                    <td>aaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                        <td>
+                        <p class="badge px-3 py-2 badge-danger">中断</p>
+                        </td>
+                        <td>dddd</td>
+                        <td>aaaa</td>
+                    </tr>
+                    @elseif($option == 'all')
+                    <tr>
+                    <td>aaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                            <td>aaaa</td>
+                        <td>
+                        @switch($result->pivot->status)
+                            @case(0)
+                            <p class="badge p-2 badge-success">未着手</p>
+                            @break
+                            @case(1)
+                            <p class="badge p-2 badge-warning">進行中</p>
+                            @break
+                            @case(2)
+                            <p class="badge px-3 py-2 badge-info">完了</p>
+                            @break
+                            @case(3)
+                            <p class="badge px-3 py-2 badge-danger">中断</p>
+                            @break
+                        @endswitch
+                        </td>
+                        <td>
+                            ddd
+                        </td>
+                        <td>aaaa</td>
+                    </tr>
+                    @endif
+                @endforeach
+                    </tbody>
+                </table>
+                @if(count($results) === 0)<span class="d-block text-center p-3 font-weight-bold" style="margin-top: -16px; background-color: #e9ecef;color: red">データが見つかりません</span>@endif
+                </div>
+            @endif
+
+
+
         </div>
     </div>
 </div>

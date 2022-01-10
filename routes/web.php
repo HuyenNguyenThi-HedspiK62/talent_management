@@ -42,7 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('talent')->name('talent.')->group(function () {
     Route::get('/delete/{talentId}', [App\Http\Controllers\TalentController::class, 'delete'])->name('delete');
     Route::get('/', [App\Http\Controllers\TalentController::class, 'index'])->name('index');
-    Route::get('/{talent}/{option}', [App\Http\Controllers\TalentController::class, 'show'])->name('show');
+    Route::get('/{talent}/{option}/{choose}', [App\Http\Controllers\TalentController::class, 'show'])->name('show');
 });
 
 Route::prefix('manager')->name('manager.')->group(function () {

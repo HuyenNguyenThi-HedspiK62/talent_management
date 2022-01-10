@@ -23,6 +23,6 @@ class Course extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot(['score', 'comment']);
+        return $this->belongsToMany(User::class)->withPivot(['score', 'comment', 'user_id']);
     }
 }
