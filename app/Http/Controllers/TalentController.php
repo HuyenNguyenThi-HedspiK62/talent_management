@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Schedule;
 use App\Models\Task;
+use App\Models\Course;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 class TalentController extends Controller
@@ -153,7 +154,7 @@ class TalentController extends Controller
                 $talent->save();
                 $infos = explode(". ", $talent->information);
                 $results = $talent->schedule;
-                return redirect()->route('talent.show', ['talent' => $talent->id, 'option' => 'all']);
+                return redirect()->route('talent.show', ['talent' => $talent->id, 'option' => 'all', 'choose' => 'sukejyu']);
             }
     }
 

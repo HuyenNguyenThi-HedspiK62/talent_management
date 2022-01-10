@@ -42,7 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('talent')->name('talent.')->group(function () {
     Route::get('/delete/{talentId}', [App\Http\Controllers\TalentController::class, 'delete'])->name('delete');
     Route::get('/', [App\Http\Controllers\TalentController::class, 'index'])->name('index');
-    Route::get('/{talent}/{option}', [App\Http\Controllers\TalentController::class, 'show'])->name('show');
+    Route::get('/{talent}/{option}/{choose}', [App\Http\Controllers\TalentController::class, 'show'])->name('show');
 });
 
 Route::prefix('manager')->name('manager.')->group(function () {
@@ -60,3 +60,6 @@ Route::get('/add-talent', [App\Http\Controllers\TalentController::class, 'addTal
 Route::get('/{id}/edit-talent', [App\Http\Controllers\TalentController::class, 'editTalent'])->name('talent.edit');
 Route::post('/{id}/update-talent/{option}', [App\Http\Controllers\TalentController::class, 'update'])->name('talent.update');
 Route::get('/create-course', [App\Http\Controllers\CourseController::class, 'create'])->name('course.create');
+
+
+Route::get('/calendar', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendar.index');

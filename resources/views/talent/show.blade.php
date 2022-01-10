@@ -135,9 +135,9 @@ td, th {
                         <tbody>
                         @foreach ($talents as $talent)
                             <tr>
-                                <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->name }}</td>
-                                <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->email }}</td>
-                                <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all']) }}';" style='cursor: pointer;'>{{ $talent->join_company_date }}</td>
+                                <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu']) }}';" style='cursor: pointer;'>{{ $talent->name }}</td>
+                                <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu']) }}';" style='cursor: pointer;'>{{ $talent->email }}</td>
+                                <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu']) }}';" style='cursor: pointer;'>{{ $talent->join_company_date }}</td>
                                 <td style="font-size:20px;">
                                     <a style="color: black;" href="{{ route('talent.edit', $talent->id) }}"><i class="far fa-edit"></i></a>
                                     <a href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>

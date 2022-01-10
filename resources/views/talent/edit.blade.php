@@ -29,7 +29,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="{{ route('talent.update',  ['id' => $talent->id,'option' => 'all']) }}" method="POST">
+                <form action="{{ route('talent.update',  ['id' => $talent->id,'option' => 'all', 'choose' => 'schedule']) }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <div class="row">
