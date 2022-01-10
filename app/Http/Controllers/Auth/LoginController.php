@@ -45,7 +45,7 @@ class LoginController extends Controller
             if(Auth::user()->role == 0){
                 return redirect()->route('schedule.index', ['option' => 'all']);
             }else{
-                return redirect()->route('talent.show',['option' => 'all', 'talent' => auth()->user()->id]);
+                return redirect()->route('talent.show',['option' => 'all', 'talent' => auth()->user()->id, 'choose' => 'schedule']);
             }
         }
     }
