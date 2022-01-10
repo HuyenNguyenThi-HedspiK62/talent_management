@@ -10,6 +10,13 @@
         .select2-container--default .select2-selection--single {
             height: 40px;
         }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #007bff!important;
+            border-color: #006fe6;
+            color: #fff;
+            padding: 0 10px;
+            margin-top: 0.31rem;
+        }
     </style>
 @endsection
 @section('content-header')
@@ -98,22 +105,18 @@
                           <label for="exampleFormControlSelect1">担当者 (*)</label>
                         </div>
                         <div class="col-md-8">
-                            <select name="person" class="form-control select2" style="width: 100%;">
-                                <option selected disabled hidden></option>
-                                @foreach($persons as $person)
-                                    <option @if(old('person') == $person->id) selected @endif value="{{$person->id}}">{{$person->name}}</option>
-                                @endforeach
-                            </select>
+                          <select onchange="countSelected()" class="select2" multiple="multiple" name="person[]" data-placeholder="Select a talent" style="width: 100%;">
+                            @foreach($persons as $person)
+                              <option @if(old('person') == $person->id) selected
+                                      @endif value="{{$person->id}}">{{$person->name}}</option>
+                            @endforeach
+                          </select>
                             @error('person')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
                       </div>
-
-                      
-
                     </div>
-
                     <div class="form-group">
                       <div class="row">
                         <div class="col-md-3">
@@ -157,5 +160,8 @@
             //Initialize Select2 Elements
             $('.select2').select2()
         })
+        function countSelected(){
+            $("#selectedNumbers").text($('ul.select2-selection__rendered li').length -1);
+        }
     </script>
 @endsection
