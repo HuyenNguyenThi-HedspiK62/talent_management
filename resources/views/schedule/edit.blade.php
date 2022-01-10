@@ -62,7 +62,7 @@
                       <label for="exampleFormControlInput1">スケジュール名 (*)</label>
                     </div>
                     <div class="col-md-8">
-                      <input type="text" name="schedule_name" value="@if(!$errors->isEmpty()) {{old('schedule_name')}} @else {{ $schedule->schedule_name }} @endif" class="form-control" placeholder="スケジュール名を入力して下さい" class="@error('schedulename') is-invalid @enderror">
+                      <input type="text" name="schedule_name" value="@if(!$errors->isEmpty()) {{old('schedule_name')}} @else {{ $schedule->schedule_name }} @endif" class="form-control" placeholder="スケジュール名を入力して下さい">
                         @error('schedule_name')
                         <span class="text-danger">{{$message}}</span>
                         @enderror

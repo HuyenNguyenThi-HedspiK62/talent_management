@@ -115,9 +115,11 @@ td, th {
                         <input onkeypress="handleKeyPress(event)" id="text_search" type="text" class="form-control text-center" placeholder="検索">
                     </div>
                 </div>
+                @if(auth()->user()->role == 0)
                 <div class="col-1 text-center">
                     <a href="{{ route('talent.add') }}"><i class="fas fa-plus-circle fa-2x"></i></a>
                 </div>
+                @endif
             </div>
 
             </div>
@@ -129,7 +131,9 @@ td, th {
                             <th>名前</th>
                             <th>アドレス</th>
                             <th>会社入日</th>
+                            @if(auth()->user()->role == 0)
                             <th>アクション</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -138,11 +142,13 @@ td, th {
                                 <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu']) }}';" style='cursor: pointer;'>{{ $talent->name }}</td>
                                 <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu']) }}';" style='cursor: pointer;'>{{ $talent->email }}</td>
                                 <td onclick="window.location.href = '{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu']) }}';" style='cursor: pointer;'>{{ $talent->join_company_date }}</td>
+                                @if(auth()->user()->role == 0)
                                 <td style="font-size:20px;">
                                     <a style="color: black;" href="{{ route('talent.edit', $talent->id) }}"><i class="far fa-edit"></i></a>
                                     <a href="{{ route('talent.delete', [ 'talentId' => $talent->id]) }}" onclick="return confirm('このタレントを削除してもよろしいですか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
 
                                 </td>
+                                @endif
                             </tr>
                          @endforeach
                         </tbody>

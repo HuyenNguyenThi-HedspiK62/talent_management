@@ -30,12 +30,14 @@
                         @break
                     @endswitch
                 </div>
+                @if(auth()->user()->role == 0)
                 <div class="col-2 offset-4 text-right pr-3">
                     <div style="font-size:20px;">
                         <a href="{{ route('course.edit', ['id' => $course->id]) }}" style="color: black;"><i class="far fa-edit"></i></a>
                         <a onclick="deleteCourse({{$course->id}})" class="pl-2"><i class="far fa-trash-alt"></i></a>
                     </div>
                 </div>
+                @endif
             </div>
             <!-- /.row -->
             <div class="row">
@@ -104,9 +106,11 @@
                                 <div class="col-md-6">
                                     <h2>成績管理</h2>
                                 </div>
+                                @if(auth()->user()->role == 0)
                                 <div class="col-md-6" style="text-align: right;">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">成績入力</button>
                                 </div>
+                                @endif
                             </div>
                             <div>
                                 <table id="example2" class="table table-bordered table-hover text-center">

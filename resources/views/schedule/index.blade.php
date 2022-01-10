@@ -25,9 +25,11 @@
                         <input onkeypress="handleKeyPress(event)" id="text_search" type="text" class="form-control text-center" placeholder="検索">
                     </div>
                 </div>
+                @if(auth()->user()->role == 0)
                 <div class="col-1 text-center">
                     <a href="{{ route('schedule.add') }}"><i class="fas fa-plus-circle fa-2x"></i></a>
                 </div>
+                @endif
             </div>
             <!-- /.row -->
             <div class="row">
@@ -40,7 +42,9 @@
                             <th>開始日</th>
                             <th width="8%">ステータス</th>
                             <th width="35%">場所</th>
+                            @if(auth()->user()->role == 0)
                             <th>アクション</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -91,7 +95,7 @@
                                                             @break
                                                         @endswitch
                                                     </a>
-
+                                                    @if(auth()->user()->role == 0)
                                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                                         <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}},{{ $user->id }}, 0)">
                                                             <p class="badge p-2 badge-success">未着手</p>
@@ -106,17 +110,22 @@
                                                             <p class="badge px-3 py-2 badge-danger">中断</p>
                                                         </a>
                                                     </div>
+                                                    @endif
                                                 </li>
                                             </ul>
                                         </td>
                                         @if($count == 0)
                                         <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $schedule->id, 'userId' => $user->id])}}';" style='cursor: pointer;'>{{ $schedule->location }}</td>
-                                        <td style="font-size:20px;">
-                                            <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
-                                            <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
-                                        </td>
+                                            @if(auth()->user()->role == 0)
+                                            <td style="font-size:20px;">
+                                                <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
+                                                <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                            </td>
+                                            @endif
                                         @else
+                                            @if(auth()->user()->role == 0)
                                             <td></td>
+                                            @endif
                                             <td></td>
                                         @endif
                                         @php $count++ @endphp

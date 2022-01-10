@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>タレント管理ツール</title>
+    <title>Ta-ma Go!</title>
 
 
 
@@ -24,7 +24,7 @@
     </style>
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper" @if(auth()->user()->role == 1) style="margin-left: -250px" @endif>
+<div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
         <!-- Left navbar links -->
@@ -60,11 +60,10 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    @if(auth()->user()->role == 0)
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="#" class="brand-link">
-            <span class="brand-text font-weight-light">Ta-ma Go!</span>
+            <h4 class="brand-text font-weight-light text-center font-weight-bold">Ta-ma Go!</h4>
         </a>
         <!-- Sidebar -->
         <div class="sidebar">
@@ -80,6 +79,7 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview ml-3">
+                            @if(auth()->user()->role == 0)
                             <li class="nav-item">
                                 <a href="{{ route('manager.index') }}" class="nav-link @if(str_contains(request()->path(), 'manager')) active @endif">
                                     <i class="nav-icon fas fa-user"></i>
@@ -88,6 +88,7 @@
                                     </p>
                                 </a>
                             </li>
+                            @endif
                             <li class="nav-item">
                                 <a href="{{ route('talent.index') }}" class="nav-link @if(str_contains(request()->path(), 'talent')) active @endif">
                                     <i class="nav-icon fas fa-user"></i>
@@ -120,7 +121,6 @@
         </div>
         <!-- /.sidebar -->
     </aside>
-    @endif
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

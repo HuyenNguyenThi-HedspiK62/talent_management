@@ -25,9 +25,11 @@
                         <input onkeypress="handleKeyPress(event)" id="text_search" type="text" class="form-control text-center" placeholder="検索">
                     </div>
                 </div>
+                @if(auth()->user()->role == 0)
                 <div class="col-1 text-center">
                     <a href="{{ route('course.create') }}"><i class="fas fa-plus-circle fa-2x"></i></a>
                 </div>
+                @endif
             </div>
             <!-- /.row -->
             <div class="row">
@@ -39,7 +41,9 @@
                             <th>日程</th>
                             <th width="12%">ステータス</th>
                             <th width="35%">担当者</th>
+                            @if(auth()->user()->role == 0)
                             <th>アクション</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -71,7 +75,7 @@
                                                     @break
                                                 @endswitch
                                             </a>
-
+                                            @if(auth()->user()->role == 0)
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                                 <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 0)">
                                                     <p class="badge p-2 badge-success">未着手</p>
@@ -86,14 +90,17 @@
                                                     <p class="badge px-3 py-2 badge-danger">中断</p>
                                                 </a>
                                             </div>
+                                            @endif
                                         </li>
                                     </ul>
                                 </td>
                                 <td onclick="window.location.href = '{{route('course.show', ['id' => $course->id])}}';" style='cursor: pointer;'>{{ $course->instructor }}</td>
+                                @if(auth()->user()->role == 0)
                                 <td>
                                     <a style="color: black;" href="{{ route('course.edit', ['id' => $course->id]) }}"><i class="far fa-edit"></i></a>
                                     <a href="#" onclick="deleteCourse({{$course->id}})" class="pl-2"><i class="far fa-trash-alt"></i></a>
                                 </td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>
