@@ -123,7 +123,7 @@
         }
 
         function deleteCourse(courseId) {
-            if (confirm('xoa nhe?')) {
+            if (confirm('本当に削除しますか？')) {
                 window.location.href = 'http://' + window.location.host + '/course/delete/' + courseId;
             }
         }
