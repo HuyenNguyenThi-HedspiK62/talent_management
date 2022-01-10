@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('content-header')
-    マネジャー
+    マネージャー一覧
 @endsection
 @section('content')
 

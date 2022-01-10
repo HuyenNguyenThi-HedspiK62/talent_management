@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" style="height: auto; margin-left: -10px">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,7 +84,7 @@
                                 <a href="{{ route('manager.index') }}" class="nav-link @if(str_contains(request()->path(), 'manager')) active @endif">
                                     <i class="nav-icon fas fa-user"></i>
                                     <p>
-                                        マネジャー一覧
+                                        マネージャー一覧
                                     </p>
                                 </a>
                             </li>
