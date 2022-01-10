@@ -10,6 +10,13 @@
         .select2-container--default .select2-selection--single {
             height: 40px;
         }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #007bff!important;
+            border-color: #006fe6;
+            color: #fff;
+            padding: 0 10px;
+            margin-top: 0.31rem;
+        }
     </style>
 @endsection
 @section('content-header')
