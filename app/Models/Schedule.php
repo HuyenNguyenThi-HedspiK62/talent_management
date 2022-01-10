@@ -13,7 +13,10 @@ class Schedule extends Model
         'schedule_name',
         'date',
         'location',
-        'information'
+        'information',
+        'start_time',
+        'end_time',
+        'review'
     ];
 
     public function users()

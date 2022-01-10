@@ -18,6 +18,9 @@ class CreateSchedulesTable extends Migration
             $table->text('schedule_name');
             $table->date('date');
             $table->text('location');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->string('review');
             $table->text('information')->nullable();
             $table->timestamps();
         });

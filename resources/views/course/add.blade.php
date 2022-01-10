@@ -127,7 +127,7 @@
                             <label>タレント追加&nbsp;(<span id="selectedNumbers">0</span>&nbsp;名選んだ)</label>
                             <select onchange="countSelected()" class="select2" multiple="multiple" name="talents[]" data-placeholder="Select a talent" style="width: 100%;">
                                 @foreach($talents as $talent)
-                                    <option @if(old('talent') == $talent->id) selected
+                                    <option @if(in_array($talent->id, old('talents') ?? [])) selected
                                             @endif value="{{$talent->id}}">{{$talent->name}}</option>
                                 @endforeach
                             </select>
@@ -154,6 +154,7 @@
         $(function () {
             //Initialize Select2 Elements
             $('.select2').select2()
+            $("#selectedNumbers").text($('ul.select2-selection__rendered li').length -1);
         })
 
         function countSelected(){
