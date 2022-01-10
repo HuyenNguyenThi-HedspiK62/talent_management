@@ -103,7 +103,9 @@ class TalentController extends Controller
         $results = $results->sortBy(function($result){
             return $result->pivot->status;
         });
-        return view('talent.profile', ['talent' => $talent, 'infos' => $infos, 'results' => $results]);
+        $kosus = $talent->courses;
+        $id = $talent->id;
+        return view('talent.profile', ['talent' => $talent, 'infos' => $infos, 'results' => $results, 'kosus' => $kosus, 'id' => $id]);
     }
 
     public function delete($talentId){
