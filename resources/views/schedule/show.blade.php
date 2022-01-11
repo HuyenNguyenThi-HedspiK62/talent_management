@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-6">
                     <h4 class="mt-1 mr-3 d-inline">{{ $schedule->schedule_name }}</h4>
-                    @switch($schedule->users[0]->pivot->status)
+                    @switch($schedule->status)
                         @case(0)
                         <p class="badge p-2 badge-success">未着手</p>
                         @break
@@ -61,7 +61,17 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label text-right">タレント</label>
                             <div class="col-sm-10">
-                                <input disabled type="text" class="bg-white form-control text-center" value="{{$schedule->users[0]->name}}">
+                                @php
+                                    $fullTalent = '';
+                                @endphp
+                                @for($i = 0; $i < count($schedule->users); $i++)
+                                    @if($i == count($schedule->users) - 1)
+                                        @php $fullTalent = $fullTalent.$schedule->users[$i]->name @endphp
+                                    @else
+                                        @php $fullTalent = $fullTalent.$schedule->users[$i]->name.'、' @endphp
+                                    @endif
+                                @endfor
+                                <textarea rows="4" disabled type="text" class="bg-white form-control text-center">{{$fullTalent}}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">

@@ -207,7 +207,7 @@ table.table .form-control.error {
                         <thead style="background-color: #a0e4fc;">
                     <tr>
                         <th>スケジュール名</th>
-                        <th>時間</th>
+                        <th>開始日</th>
                         <th>場所</th>
                         <th>ステータス</th>
                         <th style="width: 35%">詳細の情報</th>
@@ -338,12 +338,12 @@ table.table .form-control.error {
                                 <p class="badge p-2 badge-success">未着手</p>
                             </td>
                             @foreach($kosu->users as $talent)
-                                       
-                            @if($talent->pivot->user_id === $id)         
+
+                            @if($talent->pivot->user_id === $id)
                             <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
                             <td>{{$talent->pivot->comment}}</td>
                             @endif
-                                          
+
                          @endforeach
                         </tr>
                     @elseif($kosu->pivot->status == 1 && $option == 'processing')
@@ -358,12 +358,12 @@ table.table .form-control.error {
                             <p class="badge p-2 badge-warning">進行中</p>
                         </td>
                         @foreach($kosu->users as $talent)
-                                       
-                        @if($talent->pivot->user_id === $id)         
+
+                        @if($talent->pivot->user_id === $id)
                             <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
                             <td>{{$talent->pivot->comment}}</td>
                             @endif
-                                          
+
                          @endforeach
                     </tr>
                     @elseif($kosu->pivot->status == 2 && $option == 'done')
@@ -378,12 +378,12 @@ table.table .form-control.error {
                             <p class="badge px-3 py-2 badge-info">完了</p>
                             </td>
                             @foreach($kosu->users as $talent)
-                                       
-                            @if($talent->pivot->user_id === $id)         
+
+                            @if($talent->pivot->user_id === $id)
                             <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
                             <td>{{$talent->pivot->comment}}</td>
                             @endif
-                                          
+
                          @endforeach
                         </tr>
                     @elseif($kosu->pivot->status == 3 && $option == 'interrupted')
@@ -398,12 +398,12 @@ table.table .form-control.error {
                         <p class="badge px-3 py-2 badge-danger">中断</p>
                         </td>
                         @foreach($kosu->users as $talent)
-                                       
-                        @if($talent->pivot->user_id === $id)         
+
+                        @if($talent->pivot->user_id === $id)
                             <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
                             <td>{{$talent->pivot->comment}}</td>
                             @endif
-                                          
+
                          @endforeach
                     </tr>
                     @elseif($option == 'all')
@@ -430,13 +430,13 @@ table.table .form-control.error {
                         @endswitch
                         </td>
                         @foreach($kosu->users as $talent)
-                            @if($talent->pivot->user_id === $id)         
+                            @if($talent->pivot->user_id === $id)
                             <td>{{$talent->pivot->score}}/{{$kosu->max_score}}</td>
                             <td>{{$talent->pivot->comment}}</td>
                             @endif
-                                          
+
                          @endforeach
-                        
+
                     </tr>
                     @endif
                 @endforeach

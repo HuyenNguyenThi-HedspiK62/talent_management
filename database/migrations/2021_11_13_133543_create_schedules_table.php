@@ -20,7 +20,8 @@ class CreateSchedulesTable extends Migration
             $table->text('location');
             $table->time('start_time');
             $table->time('end_time');
-            $table->string('review');
+            $table->string('reviewer');
+            $table->unsignedInteger('status')->default(0)->comment('0: not started, 1: processing, 2: done, 3: suspend');
             $table->text('information')->nullable();
             $table->timestamps();
         });

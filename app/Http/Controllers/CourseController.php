@@ -95,7 +95,7 @@ class CourseController extends Controller
     {
         $result = Course::where('id', $request->get('id'))->update(['status' => $request->get('status')]);
         if($result) {
-            return response('success', 200);
+            return response($request->get('id'), 200);
         }
         return response('error', 500);
     }

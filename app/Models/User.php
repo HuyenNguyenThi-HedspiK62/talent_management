@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function schedule()
     {
-        return $this->belongsToMany('App\Models\Schedule', 'tasks')->withPivot('status');
+        return $this->belongsToMany('App\Models\Schedule', 'tasks');
     }
 
     public function courses()

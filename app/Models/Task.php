@@ -12,6 +12,5 @@ class Task extends Model
     protected $fillable = [
         'schedule_id',
         'user_id',
-        'status',
     ];
 }

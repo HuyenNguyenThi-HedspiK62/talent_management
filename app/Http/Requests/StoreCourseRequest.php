@@ -24,7 +24,7 @@ class StoreCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'bail|required|string|max:50',
+            'name' => 'bail|required|string|max:50|unique:courses,name',
             'location' => 'bail|required|string|max:255',
             'detail' => 'bail|required|string|max:1000',
             'start_date' => 'required',
@@ -51,7 +51,8 @@ class StoreCourseRequest extends FormRequest
 //            'talents.required' => 'タレントが選択されていません。',
             'max_score.required' => '成績満点が入力されていません。',
             'end_date.after' => '終了日は開始日より後の日付である必要があります。',
-            'end_time.after' => '終了時間は開始日より後の日付である必要があります。'
+            'end_time.after' => '終了時間は開始日より後の日付である必要があります。',
+            'name.unique' => 'コース名がすでに使用されています。'
         ];
     }
 }

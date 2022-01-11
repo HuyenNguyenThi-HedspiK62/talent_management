@@ -134,8 +134,13 @@
                           <label for="exampleFormControlInput1">レビュアー</label>
                         </div>
                         <div class="col-md-8">
-                          <input value="{{old('review')}}" type="text" name="review" class="form-control" class="@error('schedulename') is-invalid @enderror">
-                            @error('review')
+                          <select name="reviewer" class="form-control">
+                              <option class="disabled hidden"></option>
+                              @foreach($reviewers as $reviewer)
+                                  <option value="{{ $reviewer->name }}" @if(old('reviewer') == $reviewer->name) selected @endif"> {{ $reviewer->name }}</option>
+                              @endforeach
+                          </select>
+                            @error('reviewer')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>

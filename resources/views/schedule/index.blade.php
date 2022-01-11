@@ -40,7 +40,7 @@
                             <th>スケジュール名</th>
                             <th>タレント</th>
                             <th>開始日</th>
-                            <th width="8%">ステータス</th>
+                            <th width="12%">ステータス</th>
                             <th width="35%">場所</th>
                             @if(auth()->user()->role == 0)
                             <th>アクション</th>
@@ -48,91 +48,84 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @php $option = Request::segment(2) @endphp
                         @foreach($schedules as $schedule)
-                            @php $count = 0; @endphp
-                            @foreach($schedule->users as $user)
-                                @php $isDisplay = 0; @endphp
-                                @if(
-                                    ($option == 'not-started' && $user->pivot->status == 0) ||
-                                    ($option == 'processing' && $user->pivot->status == 1) ||
-                                    ($option == 'done' && $user->pivot->status == 2) ||
-                                    ($option == 'interrupted' && $user->pivot->status == 3) ||
-                                    ($option == 'all')
-                                )
-                                    @php $isDisplay = 1; @endphp
-                                @endif
-                                @if($isDisplay == 1)
-                                    <tr>
-                                        @if($count == 0)
-                                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $schedule->id, 'userId' => $user->id])}}';" style='cursor: pointer;'>
-                                            {{ $schedule->schedule_name }}
-                                        </td>
-                                        @else
-                                            <td></td>
-                                        @endif
-                                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $schedule->id, 'userId' => $user->id])}}';" style='cursor: pointer;'>{{ $user->name }}</td>
-                                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $schedule->id, 'userId' => $user->id])}}';" style='cursor: pointer;'>{{ $schedule->date }}</td>
-                                        <td>
-                                            <ul class="navbar-nav d-inline">
-                                                <li class="nav-item dropdown">
-                                                    <a id="navbarDropdown-{{$schedule->id}}-{{$user->id}}" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="margin-top: -10px">
-                                                        @switch($user->pivot->status)
-                                                            @case(0)
-                                                            <p class="badge p-2 badge-success">未着手</p>
-                                                            @break
-                                                            @case(1)
-                                                            <p class="badge p-2 badge-warning">進行中</p>
-                                                            @break
-                                                            @case(2)
-                                                            <p class="badge px-3 py-2 badge-info">完了</p>
-                                                            @break
-                                                            @case(3)
-                                                            <p class="badge px-3 py-2 badge-danger">中断</p>
-                                                            @break
-                                                            @default
-                                                            <p class="badge p-2 badge-success">未着手</p>
-                                                            @break
-                                                        @endswitch
-                                                    </a>
-                                                    @if(auth()->user()->role == 0)
-                                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}},{{ $user->id }}, 0)">
-                                                            <p class="badge p-2 badge-success">未着手</p>
-                                                        </a>
-                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}},{{ $user->id }}, 1)">
+                            <tr>
+                                <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $schedule->id])}}';" style='cursor: pointer;'>
+                                    {{ $schedule->schedule_name }}
+                                </td>
+                                @php
+                                    $fullTalent = '';
+                                @endphp
+                                @for($i = 0; $i < count($schedule->users); $i++)
+                                    @if($i == count($schedule->users) - 1)
+                                        @php $fullTalent = $fullTalent.$schedule->users[$i]->name @endphp
+                                    @else
+                                        @php $fullTalent = $fullTalent.$schedule->users[$i]->name.'、' @endphp
+                                    @endif
+                                @endfor
+                                <td data-html="true" data-toggle="tooltip" title="<h5>{{ $fullTalent }}</h5>" onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $schedule->id])}}';" style='cursor: pointer;'>@if(strlen($fullTalent) > 25){{ substr($fullTalent, 0, 25) }}...@else {{ $fullTalent }} @endif</td>
+                                <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $schedule->id])}}';" style='cursor: pointer;'>{{ $schedule->date }}</td>
+                                <td>
+                                    <ul class="navbar-nav d-inline">
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown-{{$schedule->id}}" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="margin-top: -10px">
+                                                @switch($schedule->status)
+                                                    @case(0)
+                                                    <p class="badge p-2 badge-success">未着手</p>
+                                                    @break
+                                                    @case(1)
+                                                    <p class="badge p-2 badge-warning">進行中</p>
+                                                    @break
+                                                    @case(2)
+                                                    <p class="badge px-3 py-2 badge-info">完了</p>
+                                                    @break
+                                                    @case(3)
+                                                    <p class="badge px-3 py-2 badge-danger">中断</p>
+                                                    @break
+                                                    @default
+                                                    <p class="badge p-2 badge-success">未着手</p>
+                                                    @break
+                                                @endswitch
+                                            </a>
+                                            @if(auth()->user()->role == 0 && ($schedule->status == 0 || $schedule->status == 1))
+                                                <div id="changeStatus-{{ $schedule->id }}" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                    @switch($schedule->status)
+                                                        @case(0)
+                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}}, 1)">
                                                             <p class="badge p-2 badge-warning">進行中</p>
                                                         </a>
-                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}},{{ $user->id }}, 2)">
+                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}}, 2)">
                                                             <p class="badge px-3 py-2 badge-info">完了</p>
                                                         </a>
-                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}},{{ $user->id }}, 3)">
+                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}}, 3)">
                                                             <p class="badge px-3 py-2 badge-danger">中断</p>
                                                         </a>
-                                                    </div>
-                                                    @endif
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        @if($count == 0)
-                                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $schedule->id, 'userId' => $user->id])}}';" style='cursor: pointer;'>{{ $schedule->location }}</td>
-                                            @if(auth()->user()->role == 0)
-                                            <td style="font-size:20px;">
-                                                <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
-                                                <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
-                                            </td>
+                                                        @break
+                                                        @case(1)
+{{--                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}}, 0)">--}}
+{{--                                                            <p class="badge p-2 badge-success">未着手</p>--}}
+{{--                                                        </a>--}}
+                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}}, 2)">
+                                                            <p class="badge px-3 py-2 badge-info">完了</p>
+                                                        </a>
+                                                        <a class="dropdown-item text-center" onclick="updateStatus({{$schedule->id}}, 3)">
+                                                            <p class="badge px-3 py-2 badge-danger">中断</p>
+                                                        </a>
+                                                        @break
+                                                    @endswitch
+                                                </div>
                                             @endif
-                                        @else
-                                            @if(auth()->user()->role == 0)
-                                            <td></td>
-                                            @endif
-                                            <td></td>
-                                        @endif
-                                        @php $count++ @endphp
-                                    </tr>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $schedule->id])}}';" style='cursor: pointer;'>{{ $schedule->location }}</td>
+                                @if(auth()->user()->role == 0)
+                                    <td style="font-size:20px;">
+                                        <a style="color: black;" href="{{ route('schedule.edit', $schedule->id) }}"><i class="far fa-edit"></i></a>
+                                        <a href="{{ route("schedule.delete", ['scheduleId' => $schedule->id]) }}" onclick="return confirm('本当に削除しますか？');" class="pl-2"><i class="far fa-trash-alt"></i></a>
+                                    </td>
                                 @endif
-                            @endforeach
-                            @php $count = 0 @endphp
+                            </tr>
                         @endforeach
 
                         </tbody>
@@ -149,6 +142,10 @@
 
 @section('script')
     <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
         function handleKeyPress(e){
             var key=e.keyCode || e.which;
             if (key==13){
@@ -161,7 +158,7 @@
             window.location.href = 'http://' + window.location.host + '/schedule/all?search=' + (textSearch);
         }
 
-        function updateStatus(schedule_id, talent_id, status) {
+        function updateStatus(schedule_id, status) {
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -170,27 +167,49 @@
                 type: "POST",
                 data: {
                     schedule_id: schedule_id,
-                    talent_id: talent_id,
                     status: status
                 },
                 success: function (success) {
-                    let navbarDropdown = $(`#navbarDropdown-${schedule_id}-${talent_id}`)
+                    let navbarDropdown = $(`#navbarDropdown-${schedule_id}`)
                     navbarDropdown.find('p').remove()
+                    //change status
+                    let changeStatus = $(`#changeStatus-${success}`)
+                    changeStatus.find('a').remove()
                     switch(status) {
                         case 0:
                             navbarDropdown.append('<p class="badge p-2 badge-success">未着手</p>')
+                            //change status
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 1)">\n' +
+                                '                                                            <p class="badge p-2 badge-warning">進行中</p>\n' +
+                                '                                                        </a>')
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 2)">\n' +
+                                '                                                            <p class="badge px-3 py-2 badge-info">完了</p>\n' +
+                                '                                                        </a>')
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 3)">\n' +
+                                '                                                            <p class="badge px-3 py-2 badge-danger">中断</p>\n' +
+                                '                                                        </a>')
                             break;
                         case 1:
                             navbarDropdown.append('<p class="badge p-2 badge-warning">進行中</p>')
+                            //change status
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 2)">\n' +
+                                '                                                            <p class="badge px-3 py-2 badge-info">完了</p>\n' +
+                                '                                                        </a>')
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 3)">\n' +
+                                '                                                            <p class="badge px-3 py-2 badge-danger">中断</p>\n' +
+                                '                                                        </a>')
                             break;
                         case 2:
                             navbarDropdown.append('<p class="badge px-3 py-2 badge-info">完了</p>')
+                            //change status
+                            changeStatus.addClass('d-none')
                             break;
                         case 3:
                             navbarDropdown.append('<p class="badge px-3 py-2 badge-danger">中断</p>')
+                            //change status
+                            changeStatus.addClass('d-none')
                             break;
                     }
-
                 },
                 error: function (error) {
                     console.log(error)

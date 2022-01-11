@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6">
-                    <h4 class="mt-1 mr-3 d-inline">コース名</h4>
+                    <h4 class="mt-1 mr-3 d-inline">{{ $course->name }}</h4>
                     @switch($course->status)
                         @case(0)
                         <p class="badge p-2 badge-success">未着手</p>
@@ -175,7 +175,7 @@
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">キャンセル</button>
                         <button type="submit" class="btn btn-primary">登録</button>
                     </div>
                 </form>

@@ -75,20 +75,29 @@
                                                     @break
                                                 @endswitch
                                             </a>
-                                            @if(auth()->user()->role == 0)
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 0)">
-                                                    <p class="badge p-2 badge-success">未着手</p>
-                                                </a>
-                                                <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 1)">
-                                                    <p class="badge p-2 badge-warning">進行中</p>
-                                                </a>
-                                                <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 2)">
-                                                    <p class="badge px-3 py-2 badge-info">完了</p>
-                                                </a>
-                                                <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 3)">
-                                                    <p class="badge px-3 py-2 badge-danger">中断</p>
-                                                </a>
+                                            @if(auth()->user()->role == 0 && ($course->status == 0 || $course->status == 1))
+                                            <div id="changeStatus-{{$course->id}}" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                @switch($course->status)
+                                                    @case(0)
+                                                    <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 1)">
+                                                        <p class="badge p-2 badge-warning">進行中</p>
+                                                    </a>
+                                                    <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 2)">
+                                                        <p class="badge px-3 py-2 badge-info">完了</p>
+                                                    </a>
+                                                    <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 3)">
+                                                        <p class="badge px-3 py-2 badge-danger">中断</p>
+                                                    </a>
+                                                    @break
+                                                    @case(1)
+                                                    <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 2)">
+                                                        <p class="badge px-3 py-2 badge-info">完了</p>
+                                                    </a>
+                                                    <a class="dropdown-item text-center" onclick="updateStatus({{ $course->id }}, 3)">
+                                                        <p class="badge px-3 py-2 badge-danger">中断</p>
+                                                    </a>
+                                                    @break
+                                                @endswitch
                                             </div>
                                             @endif
                                         </li>
@@ -149,18 +158,42 @@
                 success: function (success) {
                     let navbarDropdown = $(`#navbarDropdown-${id}`)
                     navbarDropdown.find('p').remove()
+                    //change status
+                    let changeStatus = $(`#changeStatus-${success}`)
+                    changeStatus.find('a').remove()
                     switch(status) {
                         case 0:
                             navbarDropdown.append('<p class="badge p-2 badge-success">未着手</p>')
+                            //change status
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 1)">\n' +
+                                '                                                            <p class="badge p-2 badge-warning">進行中</p>\n' +
+                                '                                                        </a>')
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 2)">\n' +
+                                '                                                            <p class="badge px-3 py-2 badge-info">完了</p>\n' +
+                                '                                                        </a>')
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 3)">\n' +
+                                '                                                            <p class="badge px-3 py-2 badge-danger">中断</p>\n' +
+                                '                                                        </a>')
                             break;
                         case 1:
                             navbarDropdown.append('<p class="badge p-2 badge-warning">進行中</p>')
+                            //change status
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 2)">\n' +
+                                '                                                            <p class="badge px-3 py-2 badge-info">完了</p>\n' +
+                                '                                                        </a>')
+                            changeStatus.append('<a class="dropdown-item text-center" onclick="updateStatus('+ success +', 3)">\n' +
+                                '                                                            <p class="badge px-3 py-2 badge-danger">中断</p>\n' +
+                                '                                                        </a>')
                             break;
                         case 2:
                             navbarDropdown.append('<p class="badge px-3 py-2 badge-info">完了</p>')
+                            //change status
+                            changeStatus.addClass('d-none')
                             break;
                         case 3:
                             navbarDropdown.append('<p class="badge px-3 py-2 badge-danger">中断</p>')
+                            //change status
+                            changeStatus.addClass('d-none')
                             break;
                     }
 

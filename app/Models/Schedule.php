@@ -16,11 +16,11 @@ class Schedule extends Model
         'information',
         'start_time',
         'end_time',
-        'review'
+        'reviewer'
     ];
 
     public function users()
     {
-        return $this->belongsToMany('App\Models\User', 'tasks')->withPivot('status');
+        return $this->belongsToMany('App\Models\User', 'tasks');
     }
 }

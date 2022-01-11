@@ -88,6 +88,9 @@ class TalentController extends Controller
                 $talent->join_company_date = $request->date;
                 $talent->information = $request->description;
                 $talent->save();
+                if($request->input('role') == 0){
+                    return redirect()->route('manager.index');
+                }
                 return redirect()->route('talent.index');
             }
     }

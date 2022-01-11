@@ -22,7 +22,7 @@ Auth::routes();
 Route::prefix('schedule')->name('schedule.')->group(function () {
     Route::get('/delete/{scheduleId}', [App\Http\Controllers\ScheduleController::class, 'delete'])->name('delete');
     Route::get('/{option}', [App\Http\Controllers\ScheduleController::class, 'index'])->name('index');
-    Route::get('/{scheduleId}/{userId}', [App\Http\Controllers\ScheduleController::class, 'show'])->name('show');
+    Route::get('/detail/{scheduleId}/', [App\Http\Controllers\ScheduleController::class, 'show'])->name('show');
     Route::post('/update-status/', [App\Http\Controllers\ScheduleController::class, 'updateStatus'])->name('update_status');
 });
 
