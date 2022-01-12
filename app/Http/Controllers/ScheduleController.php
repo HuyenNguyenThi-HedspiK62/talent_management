@@ -143,7 +143,7 @@ class ScheduleController extends Controller
             if ($validate->fails()) {
                 return redirect()->back()->withInput()->withErrors($validate);
             }
-        $data = $request->only(['schedule_name', 'location', 'date', 'info', 'review', 'start_time', 'end_time']);
+        $data = $request->only(['schedule_name', 'location', 'date', 'information', 'review', 'start_time', 'end_time']);
         $schedule = Schedule::find($id);
         $schedule->update($data);
         $attachedTalents = [];
