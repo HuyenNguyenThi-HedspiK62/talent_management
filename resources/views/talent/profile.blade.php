@@ -221,58 +221,58 @@ table.table .form-control.error {
                 @foreach ($results as $result)
                     @if($result->pivot->status == 0 && $option == 'not-started')
                         <tr>
-                            <td>{{ $result->schedule_name}}</td>
-                            <td>{{ $result->date}}</td>
-                            <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
-                            <td>{{ $result->location}}</td>
-                            <td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->schedule_name}}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->date}}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->start_time}} - {{ $result->end_time}}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->location}}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">
                                 <p class="badge p-2 badge-success">未着手</p>
                             </td>
-                            <td>{{ $result->information }}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->information }}</td>
                         </tr>
                     @elseif($result->pivot->status == 1 && $option == 'processing')
 
                     <tr>
-                        <td>{{ $result->schedule_name}}</td>
-                        <td>{{ $result->date}}</td>
-                        <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
-                        <td>{{ $result->location}}</td>
-                        <td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->schedule_name}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->date}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->start_time}} - {{ $result->end_time}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->location}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">
                             <p class="badge p-2 badge-warning">進行中</p>
                         </td>
-                        <td>{{ $result->information }}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->information }}</td>
                     </tr>
                     @elseif($result->pivot->status == 2 && $option == 'done')
 
                         <tr>
-                            <td>{{ $result->schedule_name}}</td>
-                            <td>{{ $result->date}}</td>
-                            <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
-                            <td>{{ $result->location}}</td>
-                            <td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->schedule_name}}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->date}}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';" >{{ $result->start_time}} - {{ $result->end_time}}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->location}}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">
                             <p class="badge px-3 py-2 badge-info">完了</p>
                             </td>
-                            <td>{{ $result->information }}</td>
+                            <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->information }}</td>
                         </tr>
                     @elseif($result->pivot->status == 3 && $option == 'interrupted')
 
                     <tr>
-                        <td>{{ $result->schedule_name}}</td>
-                        <td>{{ $result->date}}</td>
-                        <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
-                        <td>{{ $result->location}}</td>
-                        <td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->schedule_name}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->date}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->start_time}} - {{ $result->end_time}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->location}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">
                         <p class="badge px-3 py-2 badge-danger">中断</p>
                         </td>
                         <td>{{ $result->information }}</td>
                     </tr>
                     @elseif($option == 'all')
                     <tr>
-                        <td>{{ $result->schedule_name}}</td>
-                        <td>{{ $result->date}}</td>
-                        <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
-                        <td>{{ $result->location}}</td>
-                        <td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->schedule_name}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->date}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->start_time}} - {{ $result->end_time}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->location}}</td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">
                         @switch($result->pivot->status)
                             @case(0)
                             <p class="badge p-2 badge-success">未着手</p>
@@ -288,7 +288,7 @@ table.table .form-control.error {
                             @break
                         @endswitch
                         </td>
-                        <td>
+                        <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">
                             {{$result->information}}
                         </td>
                     </tr>
