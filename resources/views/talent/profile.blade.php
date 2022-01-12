@@ -208,6 +208,7 @@ table.table .form-control.error {
                     <tr>
                         <th>スケジュール名</th>
                         <th>開始日</th>
+                        <th style="width: 18%">時間</th>
                         <th>場所</th>
                         <th>ステータス</th>
                         <th style="width: 35%">詳細の情報</th>
@@ -222,6 +223,7 @@ table.table .form-control.error {
                         <tr>
                             <td>{{ $result->schedule_name}}</td>
                             <td>{{ $result->date}}</td>
+                            <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
                             <td>{{ $result->location}}</td>
                             <td>
                                 <p class="badge p-2 badge-success">未着手</p>
@@ -233,6 +235,7 @@ table.table .form-control.error {
                     <tr>
                         <td>{{ $result->schedule_name}}</td>
                         <td>{{ $result->date}}</td>
+                        <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
                         <td>{{ $result->location}}</td>
                         <td>
                             <p class="badge p-2 badge-warning">進行中</p>
@@ -244,6 +247,7 @@ table.table .form-control.error {
                         <tr>
                             <td>{{ $result->schedule_name}}</td>
                             <td>{{ $result->date}}</td>
+                            <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
                             <td>{{ $result->location}}</td>
                             <td>
                             <p class="badge px-3 py-2 badge-info">完了</p>
@@ -255,6 +259,7 @@ table.table .form-control.error {
                     <tr>
                         <td>{{ $result->schedule_name}}</td>
                         <td>{{ $result->date}}</td>
+                        <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
                         <td>{{ $result->location}}</td>
                         <td>
                         <p class="badge px-3 py-2 badge-danger">中断</p>
@@ -265,6 +270,7 @@ table.table .form-control.error {
                     <tr>
                         <td>{{ $result->schedule_name}}</td>
                         <td>{{ $result->date}}</td>
+                        <td>{{ $result->start_time}} - {{ $result->end_time}}</td>
                         <td>{{ $result->location}}</td>
                         <td>
                         @switch($result->pivot->status)
