@@ -152,8 +152,8 @@
                           <label for="exampleFormControlTextarea1">詳細の情報</label>
                         </div>
                         <div class="col-md-8">
-                          <textarea class="form-control" name="info" id="exampleFormControlTextarea1" rows="7">{{old('info')}}</textarea>
-                            @error('info')
+                          <textarea class="form-control" name="information" rows="7">{{old('information')}}</textarea>
+                            @error('information')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>

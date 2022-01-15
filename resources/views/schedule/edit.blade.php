@@ -163,8 +163,8 @@
                       <label for="exampleFormControlTextarea1">詳細の情報</label>
                     </div>
                     <div class="col-md-8">
-                      <textarea class="form-control" name="info" rows="7">@if(!$errors->isEmpty()){{old('info')}}@else{{$schedule->information}}@endif</textarea>
-                        @error('info')
+                      <textarea class="form-control" name="information" rows="7">@if(!$errors->isEmpty()){{old('information')}}@else{{$schedule->information}}@endif</textarea>
+                        @error('information')
                         <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

@@ -67,7 +67,7 @@ class ScheduleController extends Controller
                 'location'      => 'required|string|max:255',
                 'talents'       => 'required',
                 'date'          => 'required|date|after:yesterday',
-                'info'          => 'nullable|string|max:10000',
+                'information'   => 'nullable|string|max:10000',
                 'start_time'    => 'required',
                 'end_time'      => 'required|after:start_time',
                 'reviewer'      => 'required'
@@ -81,7 +81,7 @@ class ScheduleController extends Controller
                 'date.required'          => '開始日が入力されていません。',
                 'date.date'              => '開始日の形式が正しくありません。',
                 'date.after'             => '本日以降または本日の日付を選択してください。',
-                'info.max'               => '詳細の情報の長さは10000文字を超えることはできません。',
+                'information.max'        => '詳細の情報の長さは10000文字を超えることはできません。',
                 'start_time.required'    => '開始時間が入力されていません。',
                 'end_time.required'      => '終了時間が入力されていません。',
                 'end_time.after'         => '終了時間は開始日より後の日付である必要があります。',
@@ -90,7 +90,7 @@ class ScheduleController extends Controller
         if ($validate->fails()) {
             return redirect()->back()->withInput()->withErrors($validate);
         }
-        $data = $request->only(['schedule_name', 'location', 'date', 'info', 'reviewer', 'start_time', 'end_time']);
+        $data = $request->only(['schedule_name', 'location', 'date', 'information', 'reviewer', 'start_time', 'end_time']);
         $schedule = Schedule::create($data);
         $schedule->users()->attach($request->get('talents'));
         return redirect()->route('schedule.index', ['option' => 'all']);
@@ -125,7 +125,7 @@ class ScheduleController extends Controller
                 'schedule_name' => 'required|string|max:255',
                 'location'      => 'required|string|max:255',
                 'date'          => 'required|after:yesterday',
-                'info'          => 'nullable|string|max:10000',
+                'information'   => 'nullable|string|max:10000',
                 'start_time'    => 'required',
                 'end_time'      => 'required|after:start_time',
                 'reviewer'      => 'required'
@@ -137,13 +137,13 @@ class ScheduleController extends Controller
                 'location.max'           => '場所のの長さは255文字を超えることはできません。',
                 'date.required'          => '開始日が入力されていません。',
                 'date.after'             => '本日以降または本日の日付を選択してください。',
-                'info.max'               => '詳細の情報の長さは10000文字を超えることはできません。',
+                'information.max'        => '詳細の情報の長さは10000文字を超えることはできません。',
                 'reviewer.required'      => 'レビュアーが入力されていません。'
             ]);
             if ($validate->fails()) {
                 return redirect()->back()->withInput()->withErrors($validate);
             }
-        $data = $request->only(['schedule_name', 'location', 'date', 'info', 'review', 'start_time', 'end_time']);
+        $data = $request->only(['schedule_name', 'location', 'date', 'information', 'review', 'start_time', 'end_time']);
         $schedule = Schedule::find($id);
         $schedule->update($data);
         $attachedTalents = [];
