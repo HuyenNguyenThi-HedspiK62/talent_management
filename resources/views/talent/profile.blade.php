@@ -186,8 +186,9 @@ table.table .form-control.error {
 
 
             <div class="table-title">
-                <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu'])}}" class="table-text"><p class="badge p-2 badge" style="font-size: 18px; background-color: @if(str_contains(request()->path(), 'sukejyu')) blue @else gray @endif "　>スケジュール</p></a>
-                <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all','choose' => 'kosu'])}}" class="table-text"><p class="badge p-2 badge" style="font-size: 18px; background-color: @if(str_contains(request()->path(), 'kosu')) blue @else gray @endif ">コース</p></a>
+                <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all', 'choose' => 'sukejyu'])}}" class="table-text" style="color: black"><p class="badge p-2 badge" style="font-size: 18px; border: 1px solid gray; background-color: @if(str_contains(request()->path(), 'sukejyu')) #007bff @else white @endif "　>スケジュール</p></a>
+                <a href="{{ route('talent.show', ['talent' => $talent->id,'option' => 'all','choose' => 'kosu'])}}" class="table-text" style="color: black"><p class="badge p-2 badge" style="font-size: 18px; border: 1px solid gray; background-color: @if(str_contains(request()->path(), 'kosu')) #007bff @else white @endif ">コース</p></a>
+
             </div>
             @if($choose == 'sukejyu')
             <div class="container-fluid">
@@ -219,7 +220,7 @@ table.table .form-control.error {
                     $option = explode('/', Request::url())[5];
                 @endphp
                 @foreach ($results as $result)
-                    @if($result->pivot->status == 0 && $option == 'not-started')
+                    @if($result->status == 0 && $option == 'not-started')
                         <tr>
                             <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->schedule_name}}</td>
                             <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->date}}</td>
@@ -230,7 +231,7 @@ table.table .form-control.error {
                             </td>
                             <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->information }}</td>
                         </tr>
-                    @elseif($result->pivot->status == 1 && $option == 'processing')
+                    @elseif($result->status == 1 && $option == 'processing')
 
                     <tr>
                         <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->schedule_name}}</td>
@@ -242,7 +243,7 @@ table.table .form-control.error {
                         </td>
                         <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->information }}</td>
                     </tr>
-                    @elseif($result->pivot->status == 2 && $option == 'done')
+                    @elseif($result->status == 2 && $option == 'done')
 
                         <tr>
                             <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->schedule_name}}</td>
@@ -254,7 +255,7 @@ table.table .form-control.error {
                             </td>
                             <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->information }}</td>
                         </tr>
-                    @elseif($result->pivot->status == 3 && $option == 'interrupted')
+                    @elseif($result->status == 3 && $option == 'interrupted')
 
                     <tr>
                         <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->schedule_name}}</td>
@@ -273,7 +274,7 @@ table.table .form-control.error {
                         <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->start_time}} - {{ $result->end_time}}</td>
                         <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">{{ $result->location}}</td>
                         <td onclick="window.location.href = '{{route('schedule.show', ['scheduleId' => $result->id])}}';">
-                        @switch($result->pivot->status)
+                        @switch($result->status)
                             @case(0)
                             <p class="badge p-2 badge-success">未着手</p>
                             @break
@@ -333,7 +334,7 @@ table.table .form-control.error {
                     $option = explode('/', Request::url())[5];
                 @endphp
                 @foreach ($kosus as $kosu)
-                    @if($kosu->pivot->status == 0 && $option == 'not-started')
+                    @if($kosu->status == 0 && $option == 'not-started')
                         <tr>
                             <td>{{$kosu->name}}</td>
                             <td>{{ $kosu->start_date }}</td>
@@ -352,7 +353,7 @@ table.table .form-control.error {
 
                          @endforeach
                         </tr>
-                    @elseif($kosu->pivot->status == 1 && $option == 'processing')
+                    @elseif($kosu->status == 1 && $option == 'processing')
 
                     <tr>
                             <td>{{$kosu->name}}</td>
@@ -372,7 +373,7 @@ table.table .form-control.error {
 
                          @endforeach
                     </tr>
-                    @elseif($kosu->pivot->status == 2 && $option == 'done')
+                    @elseif($kosu->status == 2 && $option == 'done')
 
                         <tr>
                             <td>{{$kosu->name}}</td>
@@ -392,7 +393,7 @@ table.table .form-control.error {
 
                          @endforeach
                         </tr>
-                    @elseif($kosu->pivot->status == 3 && $option == 'interrupted')
+                    @elseif($kosu->status == 3 && $option == 'interrupted')
 
                     <tr>
                         <td>{{$kosu->name}}</td>
@@ -420,7 +421,7 @@ table.table .form-control.error {
                             <td>{{ $kosu->start_time}} - {{ $kosu->end_time}}</td>
                             <td>{{ $kosu->location }} </td>
                         <td>
-                        @switch($kosu->pivot->status)
+                        @switch($kosu->status)
                             @case(0)
                             <p class="badge p-2 badge-success">未着手</p>
                             @break
